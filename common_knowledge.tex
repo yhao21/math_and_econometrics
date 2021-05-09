@@ -311,7 +311,7 @@ suggest $ H_1 $ ought to be preferred.}}\\
 
 
 
-\subsection{Testing Means}
+\subsection{Testing Means (single mean)}
 
 How to test the mean with t-test? Let's do this.
 
@@ -394,6 +394,26 @@ sample_p_value = pt(sample_T, n-1)		# [1] 0.6505133
 # Clearly, p-value is much greater than 0.05. We fail to reject 
 # the null.
 
+
+# Method 2
+# R has a built in function for t-test:
+# t.test(x = sample, mu = mean, alternative = '')
+# alternative can be two.sided, less, greater
+
+
+t.test(x = sample, mu = 80, alternative = 'less')
+
+#	        One Sample t-test
+#	
+#	data:  sample
+#	t = 0.38957, df = 39, p-value = 0.6505
+#	alternative hypothesis: true mean is less than 80
+#	95 percent confidence interval:
+#	     -Inf 80.54177
+#	sample estimates:
+#	mean of x
+#	 80.10174
+
 \end{rc}
 
 
@@ -401,6 +421,332 @@ sample_p_value = pt(sample_T, n-1)		# [1] 0.6505133
 
 
 
+
+
+
+
+
+\subsection{Testing Means (two mean)}
+
+
+Sometime, testing for one mean is not enough. You may want to compare
+the means of two distinct groups of measurements, which boils down
+to a hypothesis test for the true difference between two means, 
+$ \mu_1, \mu_2 $.
+
+
+Two groups of data relate to each other affects the specific form of
+standard error for the difference between two sample means and 
+therefore the test statistics itself. 
+Normally, $ H_0 $ would be $ \mu_1 = \mu_2 $.\\
+
+Case 1:\\
+When you cannot assume the {\underline {variances}} of the two 
+populations are {\underline {equal}}, then you perform the 
+{\underline {unpooled}} version of the two-sample t-test.\\
+
+Case 2:\\
+If you can safely assume {\underline {equal variances}}, then you
+can perform a {\underline {pooled}} two-sample t-test, which
+{\underline {improve the precision of the result}}.
+
+
+
+\subsubsection{Unpooled two-sample t-test}
+
+Suppose we have two samples from $ N(76, 2) $, $ N(80, 2) $, with size
+$ n_1 = 44 $, $ n_2 = 31 $. Clearly, we manually make the population
+of these two samples
+with $ \mu_1 = 76 $, $ \mu_2 = 80 $. Now let's use t-test to verify
+the following null hypothesis. (Note, we are testing the mean of the
+population.)
+\begin{align*}
+H_0:& \mu_1 - \mu_2 = 0\\
+H_1:& \mu_1 - \mu_2 < 0
+\end{align*}
+
+
+We can use Welch's t-test:
+
+Form the $ t $ ststistics for two-sample case,
+\begin{equation*}
+T = \frac{\mu_{X_1} - \mu_{X_2} - \mu_0}{\sqrt {
+		\frac{s_1^{2}}{n_1} + \frac{s_2^{2}}{n_2}
+}}
+\end{equation*}
+
+where $ \mu_0 $ is the null value of the interest, which is
+$ \mu_0 = \mu_1 - \mu_2 = 0 $.
+
+And this $ t $ statistic is approximately following a t-distribution
+with $ df $ degree of freedom, where
+\begin{equation*}
+df = \left[ 
+		\frac{(\frac{s_1^{2}}{n_1} + \frac{s_2^{2}}{n_2})^{2}}
+		{ \frac{(\frac{s_1^{2}}{n_1})^{2} }{n_1 - 1} + 
+		\frac{ (\frac{s_2^{2}}{n_2} )^{2} }{n_2 - 1}
+		}
+\right] 
+\end{equation*}
+
+The above equation for $ df $ is called the {\underline {
+				Welch-Satterthwaite equation.
+}}
+
+
+
+\noindent\fbox{%
+\parbox{\textwidth}{%
+Note, the numerator of $ T $ should be consistent with the hypothesis.
+Here, we are testing for either $ \mu_1 - \mu_2 = 0 $ or 
+$ \mu_1 - \mu_2 < 0 $, so in $ T $ we write 
+$ \mu_{X_1} - \mu_{X_2} $. It is a lower-tailed test
+
+If you write your hypothesis in this way,
+\begin{align*}
+H_0:& \mu_1 - \mu_2 = 0\\
+H_1:& \mu_1 - \mu_2 > 0.
+\end{align*}
+
+Then it will be a upper-tailed test. And you want to check to right
+tail, rather the left one .
+
+}%
+}\\
+
+
+In method 1, I compute the $ t $ statistics and $ p $-value by
+myself. $ T = -299.4002 $, $ p $-value = 2.560795e-107.
+It is clearly less than 99\% confidence interval. Hence, we can reject
+the null. It says that the population means are not likely to be equal
+based on our sample.
+
+You can check the figure below. At left tail, the probability is 
+almost zero even when $ t $ is around 4. Hence, out $ t = -299 $ must
+be closed to 0. And this is verified by the $ p $-value.
+
+
+\begin{figure}[H]
+		\center{\includegraphics[scale =.5 ]  {figures/t-test_two_mean.png}}
+\end{figure}
+
+
+
+Instead of writing the code by myself, R also have a built-in function
+for Welch's t-test.
+
+
+\begin{rc}
+
+# Method 1
+# Generate data from N(76,2), N(80,2)
+set.seed(5)
+n1 = 44
+n2 = 31
+sample1 = rnorm(n1, 76, 2)
+sample2 = rnorm(n2, 80, 2)
+
+
+# Compute sample mean and se, i.e., s
+sample1.mean = mean(sample1)		# [1] 76.24008
+sample2.mean = mean(sample2)		# [1] 79.66198
+
+
+sample1.s = sd(sample1)/n1			# [1] 0.05069484
+sample2.s = sd(sample2)/n2			# [1] 0.04731536
+
+
+# Compute df:
+
+df.upper = ((sample1.s**2/n1) + (sample2.s**2/n2)) ** 2
+df.lower.left = (sample1.s**2/n1)**2/(n1-1)
+df.lower.right = (sample2.s**2/n2)**2/(n2-1)
+df.lower = df.lower.left + df.lower.right
+
+df = df.upper/df.lower				# [1] 67.39422
+
+
+# Compute t statistics
+t.upper = sample1.mean - sample2.mean
+t.lower = sqrt(
+		(sample1.s**2/n1) + (sample2.s**2/n2)
+)
+# It is negative because we are doing a left-tailed test.
+sample.t = t.upper/t.lower		# [1] -299.4002
+
+# p-value
+pt(sample.t, df)			# [1] 2.560795e-107
+
+# Suppose we use 99 Confidence Interval, p-value here is clearly
+# less than 0.01
+# Great, we reject the null. Hence miu_1 < miu_2. It is being verified.
+
+
+png('figures/t-test_two_mean.png')
+x = seq(-5,5, length = 2000)
+plot(x,
+		 dt(x, df),
+		 type = 'l',
+		 xlab = 't',
+		 ylab = 'density'
+)
+dev.off()
+
+
+# Method 2
+# Built-in Welch's t-test
+t.test(x = sample1, y = sample2, alternative = 'less', conf.level = 0.99)
+
+
+
+#	        Welch Two Sample t-test
+#	
+#	data:  sample1 and sample2
+#	t = -8.0105, df = 72.718, p-value = 6.891e-12
+#	alternative hypothesis: true difference in means is less than 0
+#	99 percent confidence interval:
+#	      -Inf -2.405759
+#	sample estimates:
+#	mean of x mean of y
+#	 76.24008  79.66198
+\end{rc}
+
+
+
+
+
+
+
+
+
+
+\subsection{Testing Categorical Variables}
+
+We use $ Z $-test to conduct a proportion test,
+see chapter 18.3(Tilman). Z-test is a normal-based test (normal distri).
+It is to data that are binary in nature.
+
+To test {\underline {categorical variables}} with more than two
+distinct level, we use {\underline {Chi-square test}}, or called
+$ \chi^{2} $ test.\\
+
+
+Two common variants of $ \chi^{2} $ test: 
+
+1. Goodness of fit(GOF) test, a $ \chi^{2} $ test of distribution.
+It is used when assessing the frequencies in the levels of a 
+{\underline {single}} categorical variable(CV).(You only have one CV)
+
+
+2. Test of independence. Employed when you have two CV.
+
+
+
+
+\subsubsection{Single Categorical Variable}
+Goal:
+
+You want to find out what proportion of n obs fall into each defined
+category.\\
+
+Assumption: categories are mutually exclusive and exhaustive.
+
+\noindent\fbox{%
+\parbox{\textwidth}{%
+Mutually exclusive:\\
+obs cannot take more than one of the possible categories. For example,
+A take Math class, then it cannot take another English class.\\
+
+Exhaustive:\\
+Categories cover all possible outcomes.
+
+
+}%
+}\\
+
+
+Suppose we want to test if the observations uniformly fall in three
+categories, 
+\begin{align*}
+		H_0&: \pi_{0(1)} = \pi_{0(2)} = \pi_{0(3)} = \frac{1}{3}\\
+		H_1&: H_0 \text{ is incorrect. }
+\end{align*}
+
+
+
+
+
+Define:
+
+1. n: number of obs\\
+2. k: number of categories(levels) for the CV.\\
+3. $ \pi_{i}$, where $ i = 1, ..., k $: the proportion of n obs in each
+of k categories.\\
+\noindent\fbox{%
+\parbox{\textwidth}{%
+Example:\\
+You have 100 obs fill in 3 categories (levels) of A, B, and C.
+Then, the proportion of n obs in each categories would be
+\begin{align*}
+		\pi_{A} = \frac{a}{n},\quad \pi_{B} &= \frac{b}{n}, \quad
+		\pi_{C} = \frac{c}{n}\\
+		\quad a + b + c &= n = 100
+\end{align*}
+}%
+}\\
+
+
+4. $ \pi_{0(i)} $: the assumed proportion of n obs in each category
+in the null hypothesis. Subscript $ 0 $ stands for the null.\\
+5. $ O_{i} $: number of the obs from the data fall in the $ i $th 
+category. In the above example, $ O_{A} = a, O_{B} = b, ... $.\\
+6. $ E_{i} $: the expected count(null) in the $ i $th category, i.e, 
+$ E_{i} = n  \times \pi_{0(i)} = n  \times \frac{1}{3} $.\\
+
+
+Now, we can form the $ \chi^{2} $ statistics:
+\begin{equation*}
+\chi^{2} = \sum\limits_{i = 1} ^k
+\frac{(O_{i} - E_{i})^{2}}{E_{i}}
+\end{equation*}
+
+Statistics $ \chi^{2} $ follows a Chi-square distribution with
+$ df = k - 1 $ degree of freedom.\\
+
+\newpage
+\noindent\fbox{%
+\parbox{\textwidth}{%
+
+Something you NEED to know about the $ \chi^{2} $ test.
+
+1. Goodness of fit(GOF): the proximity of the data to the distribution
+hypothesized in $ H_0 $.
+
+2. {\underline {Positive}} extremity of the $ \chi^{2} $ 
+statistics provides evidence {\underline {against}} $ H_0 $.
+So, $ p $-value is {\underline {always}} computed as an 
+{\underline {upper-tail area}}.
+
+3. A {\underline {rejected $ H_0 $}} DOES NOT tell you about the 
+true values of $ \pi_{i} $. It merely suggests that they do not follow
+$ H_0 $ specifically.
+
+
+
+
+}%
+}\\
+
+
+The $ \chi^{2} $ distribution with different degree of freedom(DOF),
+
+\begin{figure}[H]
+		\center{\includegraphics[scale =.5 ]  {figures/Chi-square_1_5_10.png}}
+\end{figure}
+
+
+Because it is unidirectional, the $ p $-value being defined as
+{\underline {upper-tail areas ONLY.}}
 
 
 
