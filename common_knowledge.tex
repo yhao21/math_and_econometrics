@@ -749,6 +749,316 @@ Because it is unidirectional, the $ p $-value being defined as
 {\underline {upper-tail areas ONLY.}}
 
 
+We can run this test by either compute the test statistics by ourselves,
+or use the built-in function for $ \chi^{2} $ test.
+Notice, the built-in function chisq.test() requires the
+{\underline {frequencies}} of the data. DO NOT pass the raw data
+into this test. Code :
+
+\begin{rc}
+
+### Method 1: Write your own chi-square test
+
+## test example:
+
+# Suppose data fall in three categories, 1,2,3.
+# step 1: generate data
+
+sample = c(2,3,2,3,2,1,3,3,2,2,3,2,2,2,3,3,3,2,3,2,
+2,2,1,3,2,2,2,1,2,2,3,2,2,2,2,1,2,1,1,1,2,2,2,3,1,2,1,2,1,2,1,3,3)
+
+n = length(sample)		# [1] 53
+
+# step 2: compute O_i
+sample.table = table(sample)
+sample.table
+#		sample
+#		 1  2  3	-> category i
+#		11 28 14	-> O_i
+
+# We can also comute the actual pai_i by dividing sample.table by n
+# but we don't need to to form the test statistics
+pai_i = sample.table/n
+pai_i
+#	        1         2         3		-> i
+#	0.2075472 0.5283019 0.2641509		-> pai_i
+
+# step 3: compute pai_0(i), the expected proportion,
+pai_i_expected = (1/3)*n		# [1] 17.66667
+
+
+# step 4: compute test statistics kai^2
+
+kai_sq = sum((sample.table - pai_i_expected)**2/pai_i_expected)	
+# kai_sq = 9.320755
+
+
+# step 5: compute p-value
+# Note, pchisq() give the cumulative prob. from CDF. We need to
+# subtract it by 1 to get the area for right tail.
+
+df = 3-1
+p_value = 1 - pchisq(kai_sq, df)		#[1] 0.009462891
+
+# Clearly, it is less than 0.001 significant level. We can reject the
+# null. The data do not suggest that the proportions of each category
+# are same.
+# We can also check it by printing out the proportion, pai_i
+sample.table/n
+#	        1         2         3
+#	0.2075472 0.5283019 0.2641509
+
+# Clearly, not the same.
+
+
+# Now plot the density
+
+x = seq(0,15, length = 100)
+png('figures/single_categorical_chisq_test.png')
+plot(
+		 x,
+		 dchisq(x, 3),
+		 type = 'l',
+		 xlab = 'Chi-square',
+		 ylab = 'density(df = 2)',
+		 main = 'Chi-square test for single categorical variable'
+)
+abline(h = c(0), col = 'gray')
+abline(v = c(kai_sq), col = 'gray')
+dev.off()
+
+
+
+
+
+### Method 2:
+# R has a built-in function for chi-square test.
+
+
+# NOTICE: this test function require the vector of
+#	the obs Frequencies! 
+# DO NOT pass raw sample into it.
+
+chisq.test(x = sample.table)
+
+#	        Chi-squared test for given probabilities
+#	
+#	data:  sample.table
+#	X-squared = 9.3208, df = 2, p-value = 0.009463
+
+
+
+\end{rc}
+
+
+
+
+Up to now, we assume the proportion of different categories are 
+uniformly distributed. What if it is not?
+Suppose, we want to test if the proportions of the aboved sample 
+is $ \pi_1 = 0.25, \pi_2 = 0.5, \pi_3 = 0.25 $, then we need
+to specify $ p $ in $ chisq.test(x = , q = ) $.
+\begin{align*}
+H_0&: \pi_{0(1)} = 0.25, \pi_{0(2)} = 0.5, \pi_{0(3)} = 0.25\\
+H_1&: H_0 \text{ is incorrect. }
+\end{align*}
+
+Code:
+\begin{rc}
+chisq.test(x = sample.table, p = c(0.25, 0.5, 0.25))
+#        Chi-squared test for given probabilities
+#
+#data:  sample.table
+#X-squared = 0.50943, df = 2, p-value = 0.7751
+
+# Now, we cannot reject the null
+\end{rc}
+
+
+
+
+\subsubsection{Two Categorical Variables}
+
+Categorical variable A and B are mutually exclusive and exhaustive.\\
+Our goal: test if A and B are related/dependent, i.e, check if the 
+distribution of frequencies change together. If they are independent,
+distribution of frequencies in A will have nothing to do with B's.
+
+This is also call {\underline {a test of independent }}
+
+\begin{align*}
+H_0&: \text{ A and B are independent. }\\
+H_1&: \text{ A and B are dependent }
+\end{align*}
+
+Consider an example:
+
+Two categorical variables: 1) Treatment Method, and 2) Effect.
+
+Levels in Treatment Method: Injection, Tablet, Laser, Herbal.
+
+Levels in Effect: None, Partial, Full
+
+
+Compute $ chi^{2} $ statistics
+\begin{equation*}
+		\chi^{2} = \sum\limits_{i = 1} ^{k_{r}} \sum\limits_{j = 1} ^{k_{c}}
+\frac{
+		(O_{i,j} - E_{i,j})^{2}}{ E_{i,j}}
+\end{equation*}
+
+$ k_{c} $: the column level of the variable, here
+we have three columns, $ k_{c} = 3 $.\\
+$ k_{r} $: the row level of the variable, $ k_{r} = 4 $.\\
+$ O_{i,j} $: the observed count\\
+$ E_{i,j} $: the expecred count
+\begin{equation*}
+E_{i,j} = \frac{
+		\left( 
+				\sum\limits_{u = 1} ^{k_{r}} O_{u,j}	 
+		\right)  \times 
+		\left( 
+				\sum\limits_{v = 1} ^{k_{c}} O_{i,v}
+		\right) 
+}
+{N}
+\end{equation*}
+
+Degree of freedom: $ df = (k_{r} - 1) \times (k_{c} - 1) $\\
+
+
+\noindent\fbox{%
+\parbox{\textwidth}{%
+{\textbf {NOTE:}}\\
+1. it is NOT necessary to assume that $ k_{r} = k_{c} $.\\
+2. A rejected $ H_0 $ does not tell you about the nature of how
+the frequencies depend on one another.
+
+}%
+}\\
+
+Code
+\begin{rc}
+chisq.test(x = sample)
+
+#	        Pearson's Chi-squared test
+#	data:  sample
+#	X-squared = 66.166, df = 6, p-value = 2.492e-12
+\end{rc}
+
+
+
+
+
+
+
+\section{Hypothesis Test Errors and Power}
+
+\subsection{The Errors}
+
+1. Type I error:\\
+The null, $ H_0 $, is true, but you reject it. The probability of 
+committing such an error is equivalent to the significance level 
+$ \alpha $.\\
+
+2. Type II error:\\
+You incorrectly retain a false $ H_0 $, i.e., fail to accept a true
+$ H_1 $. The probability of this type of error is usually unknown since
+it depends on what the true $ H_1 $ is.
+
+
+The distribution, mean, and variance can affect the probability
+of a type II error. 
+
+\begin{figure}[H]
+		\center{\includegraphics[scale =.6 ]  {figures/prob_of_type_II_error.png}}
+\end{figure}
+
+
+
+The distribution on the right is the true distribution specified by
+$ H_1 $. The probability of the type II error (you retain a false
+null) is $ \beta $.
+
+
+If the true mean (from the distribution on the right) is far more
+greater than the null's, then $ \beta $ would be very small.
+
+If the variance of the true distribution is larger, the density
+would be flatter, so $ \beta $ would be greater.
+
+
+
+\subsection{The statistical power}
+
+The $ power $ is the prob. of correctly rejecting a null that is 
+unture.
+
+For a Type II error, the statistical power is $ 1 - \beta $.
+
+
+
+
+\section{Analysis of variance (ANOVA)}
+DEF:\\
+ANOVA is used to compare {\underline {multiple means}} in a test
+for equivalence. It is a extension of the hypothesis test comparing
+two mean.
+
+
+
+\subsection{One-way ANOVA}
+
+It is used to test {\underline {two or more}} means for equality.
+It is often used to analyze experimental data to assess the impact
+of an intervention.
+
+Suppose we have $ k $ distinct groups of obs. The hypothesis would be
+\begin{align*}
+H_0:&\quad \mu_1 = \mu_2 = ... = \mu_{k}\\
+H_1:&\quad \mu_1, \mu_2, ..., \text{ are not all equal(at least one
+mean differs.). }
+\end{align*}
+
+When $ k = 2 $, the two-sample $ t $-test is equivalent to ANOVA.
+
+{\underline {Assumptions:}}\\
+ANVOA requires samples are independence, normally distributed (or
+approximately so), and the variance of the {\underline {observations}}
+in each group should be equal, or at least approximately so.
+
+1. Violation of these assumptions does not mean your results will be 
+worthless, but it will impact the overall effectiveness of detecting
+a {\underline {true}} difference in the means.
+
+2. The number of obs in each group does not need to be equivalent.
+But it does render the test more sensitive to potentially
+detrimental (negative) effects if your assumptions of equality of
+variances and normality are not sound.\\
+
+
+
+Stop here, Chapter 19.1
+Switch to Linear Regression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
