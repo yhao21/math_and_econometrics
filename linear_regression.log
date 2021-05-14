@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.31)  12 MAY 2021 10:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.31)  13 MAY 2021 23:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**common_knowledge.tex
-(./common_knowledge.tex
+**linear_regression.tex
+(./linear_regression.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/article.cls
@@ -316,23 +316,23 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count290
 \l__pdf_internal_box=\box56
 )
-(./common_knowledge.aux)
-\openout1 = `common_knowledge.aux'.
+(./linear_regression.aux)
+\openout1 = `linear_regression.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -404,19 +404,19 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 \c@lstlisting=\count297
-LaTeX Font Info:    Trying to load font information for U+msa on input line 79.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 69.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 79.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 69.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 79
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 69
 .
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/jknapltx/ursfs.fd
@@ -424,78 +424,26 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<figures/sampling_vs_true_distribution.png, id=8, 481.8pt x 481.8pt>
-File: figures/sampling_vs_true_distribution.png Graphic file (type png)
-<use figures/sampling_vs_true_distribution.png>
-Package pdftex.def Info: figures/sampling_vs_true_distribution.png  used on inp
-ut line 124.
-(pdftex.def)             Requested size: 240.8994pt x 240.8994pt.
- [2] [3 <./figures/sampling_vs_true_distribution.png>]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 164--176
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--176
-
- []
-
-<figures/confidence_interval.png, id=23, 481.8pt x 481.8pt>
-File: figures/confidence_interval.png Graphic file (type png)
-<use figures/confidence_interval.png>
-Package pdftex.def Info: figures/confidence_interval.png  used on input line 18
-0.
-(pdftex.def)             Requested size: 240.8994pt x 240.8994pt.
-
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 188--199
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--199
-
- []
-
-[4 <./figures/confidence_interval.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 249--252
-
- []
-
-[5]
-<figures/CI_95.png, id=31, 447.17062pt x 297.36093pt>
-File: figures/CI_95.png Graphic file (type png)
-<use figures/CI_95.png>
-Package pdftex.def Info: figures/CI_95.png  used on input line 260.
-(pdftex.def)             Requested size: 223.58476pt x 148.6801pt.
-<figures/pvalue_against_CI.png, id=32, 447.17062pt x 297.36093pt>
-File: figures/pvalue_against_CI.png Graphic file (type png)
-<use figures/pvalue_against_CI.png>
-Package pdftex.def Info: figures/pvalue_against_CI.png  used on input line 261.
-
-(pdftex.def)             Requested size: 223.58476pt x 148.6801pt.
- [6 <./figures/CI_95.png (PNG copy)> <./figures/pvalue_against_CI.png (PNG copy
-)>]
-Underfull \hbox (badness 10000) in paragraph at lines 302--304
+Underfull \hbox (badness 10000) in paragraph at lines 88--92
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 332--336
+Underfull \hbox (badness 10000) in paragraph at lines 122--123
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 345--346
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
 
  []
 
-[7]
-<figures/t-test.png, id=40, 481.8pt x 481.8pt>
-File: figures/t-test.png Graphic file (type png)
-<use figures/t-test.png>
-Package pdftex.def Info: figures/t-test.png  used on input line 363.
-(pdftex.def)             Requested size: 240.8994pt x 240.8994pt.
- (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+
+ []
+
+[2] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang2.sty
@@ -503,173 +451,79 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
-) [8 <./figures/t-test.png>] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 438--442
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 443--447
-
- []
-
-[10]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 498--516
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 498--516
-
- []
-
-<figures/t-test_two_mean.png, id=53, 481.8pt x 481.8pt>
-File: figures/t-test_two_mean.png Graphic file (type png)
-<use figures/t-test_two_mean.png>
-Package pdftex.def Info: figures/t-test_two_mean.png  used on input line 530.
-(pdftex.def)             Requested size: 240.8994pt x 240.8994pt.
-[11] [12 <./figures/t-test_two_mean.png>]
-LaTeX Font Info:    Trying to load font information for OML+cmr on input line 5
-82.
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 582.
- [13]
-Overfull \hbox (9.85997pt too wide) in paragraph at lines 598--602
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 629--632
+Underfull \hbox (badness 10000) in paragraph at lines 166--168
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 649--651
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 665--665
+[3] [4]
+<figures/dummies_in_linear_model.png, id=27, 540.51938pt x 204.01219pt>
+File: figures/dummies_in_linear_model.png Graphic file (type png)
+<use figures/dummies_in_linear_model.png>
+Package pdftex.def Info: figures/dummies_in_linear_model.png  used on input lin
+e 242.
+(pdftex.def)             Requested size: 378.36098pt x 142.80756pt.
+ [5 <./figures/dummies_in_linear_model.png (PNG copy)>] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 427--428
 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 654--666
-[] 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7]
+Overfull \hbox (23.0001pt too wide) in paragraph at lines 458--459
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 654--666
-
- []
-
-[15]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 681--697
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 681--697
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 471--474
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 699--705
+Underfull \hbox (badness 10000) in paragraph at lines 475--478
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 713--715
-
- []
-
-[16]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 717--739
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 717--739
-
- []
-
-<figures/Chi-square_1_5_10.png, id=78, 481.8pt x 481.8pt>
-File: figures/Chi-square_1_5_10.png Graphic file (type png)
-<use figures/Chi-square_1_5_10.png>
-Package pdftex.def Info: figures/Chi-square_1_5_10.png  used on input line 744.
-
-(pdftex.def)             Requested size: 240.8994pt x 240.8994pt.
-[17 <./figures/Chi-square_1_5_10.png>] [18] [19]
-Overfull \hbox (9.85997pt too wide) in paragraph at lines 824--825
-[][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[20] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 927--928
+Underfull \hbox (badness 10000) in paragraph at lines 492--496
 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 930--939
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 930--939
+Underfull \hbox (badness 10000) in paragraph at lines 497--506
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 959--963
-
- []
-
-[22]
-<figures/prob_of_type_II_error.png, id=99, 425.33907pt x 388.45125pt>
-File: figures/prob_of_type_II_error.png Graphic file (type png)
-<use figures/prob_of_type_II_error.png>
-Package pdftex.def Info: figures/prob_of_type_II_error.png  used on input line 
-974.
-(pdftex.def)             Requested size: 255.2054pt x 233.07254pt.
- [23 <./figures/prob_of_type_II_error.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 1034--1038
-
- []
-
-[24] [25] (./common_knowledge.aux) ) 
+[9] [10] (./linear_regression.aux) ) 
 Here is how much of TeX's memory you used:
- 8363 strings out of 480909
- 121039 string characters out of 5905567
- 630838 words of memory out of 5000000
- 25450 multiletter control sequences out of 15000+600000
- 419099 words of font info for 86 fonts, out of 8000000 for 9000
+ 8294 strings out of 480909
+ 119565 string characters out of 5905567
+ 600227 words of memory out of 5000000
+ 25391 multiletter control sequences out of 15000+600000
+ 421074 words of font info for 94 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 68i,11n,75p,296b,2315s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,15n,75p,297b,1810s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/e
 nc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr6.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/sym
-bols/msbm10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super
-/sfrm1095.pfb>
-Output written on common_knowledge.pdf (25 pages, 383305 bytes).
+public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-supe
+r/sfrm1095.pfb>
+Output written on linear_regression.pdf (10 pages, 206571 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 103 compressed objects within 2 object streams
+ 91 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
