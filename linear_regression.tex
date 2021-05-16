@@ -557,7 +557,468 @@ F = \frac{
 
 It follows an $ F $ distribution with $ df_1 = q - p $, 
 $ df_2 = n - q $ degree of freedom. The $ p $-value is found as the
-{\underline {upper-tail}} area from $ F $ as usual.
+{\underline {upper-tail}} area from $ F $ as usual.\\
+
+
+In R, we can use $ anova(\text{ model1, model2 }) $ to conduct a
+partial $ F $ -test.
+We pass the {\underline {reduced}} model first, then the complex model.
+
+{\textbf {Code:}}
+\begin{rc}
+redu_model = lm(norm_price~norm_volume+norm_supply, data = df)
+complex_model = lm(norm_price~norm_volume*norm_supply, data = df)
+anova(redu_model, complex_model)
+\end{rc}
+
+In the complex model, instead of the main effect, we add interaction 
+term of these two. And the result shows that this additional interaction
+term do provide a statistically significant improvement in fit because
+the $ p $-value is pretty small. We reject the null.
+
+The number of variables in the reduced model is $ p = 2 $, and the
+number of variables in the complex model is $ q = 3 $ (two main effects
+and a interaction term). Hence we can compute the DF (degree of 
+freedom), $ DF = q - p = 3 - 2 = 1 $. And that is shown in the second
+row of the table, i.e., column DF.
+
+From the result, statistics $ F = 15.717 $, $ df_{1} = 1 $, 
+$ df_2 = 2569 $.
+
+{\textbf {Again,}} we use the partial $ F $-test to verify if the
+complex model provides an improvement in fit.
+
+
+{\textbf {Disadvantage:}} It can be difficult to manage if you have
+many different models to fit when you have many explanatory variables.
+{\underline {Forward Selection}} can help us to deal with this problem.
+
+
+
+
+
+
+\begin{table}[h!]
+\begin{center}
+	
+\begin{threeparttable}
+		\caption{The Partial F-test result}			
+
+\begin{tabular}{llllll}
+\\ [-1.8ex]
+\hline
+\hline
+
+
+\hline \\[-1.8ex]
+ & {\textbf {Res.DF}} & {\textbf {RSS}} &{\textbf {DF}}&{\textbf {F}} & 
+ {\textbf {p-value}}  \\
+\\ [-1.8ex]
+\hline \\[-1.8ex]
+
+
+Model 1   &2570 &1029.8			&   &				&\\
+Model 2   &2569 &1023.6     &1  &15.717 &7.556e-05 ***\\
+
+
+
+
+\\ [-1.8ex]
+\hline \\[-1.8ex]
+
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+\item Model 1: norm\_price = norm\_volume + norm\_supply
+\item Model 2: norm\_price = norm\_volume * norm\_supply
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+\end{table}
+
+
+
+
+
+
+\subsubsection{Forward Selection}
+
+
+Also called forward elimination.
+
+{\textbf {Step 1:}}\\
+It starts with an {\underline {intercept-only}} model, and then
+perform a series of independent tests to determine which of your 
+explanatory variables significantly improves the GOF.
+
+{\textbf {Step 2:}}\\
+Then you add that term and execute the series of tests again for
+all remaining terms to determine which of those would further improve
+the fit.
+
+{\textbf {Step 3:}}\\
+The loop stops until there's no term can further improve the GOF.\\
+
+
+
+Table below shows the result of intercept-only model. 
+
+
+\begin{table}[h!]
+\begin{center}
+	
+\begin{threeparttable}
+		\caption{Intercept-only model}			
+\begin{tabular}{ccccc}
+\\ [-1.8ex]
+\hline
+\hline
+
+\hline \\[-1.8ex]
+ & {\textbf {Coef}} & {\textbf {Se}} &{\textbf {t-value}}&{\textbf {p-value}} \\
+\\ [-1.8ex]
+\hline \\[-1.8ex]
+
+
+Intercept &-2.036e-16  &1.971e-02       &0        &1\\
+
+
+
+\\ [-1.8ex]
+\hline \\[-1.8ex]
+
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+\end{table}
+
+
+
+
+Now we use $ add1() $ to find the most helpful variable to be added to
+our intercept-only model.
+
+
+
+
+
+\begin{table}[h!]
+\begin{center}
+	
+\begin{threeparttable}
+		\caption{Forward selection}			
+\begin{tabular}{ccccccc}
+\\ [-1.8ex]
+\hline
+\hline
+
+\hline \\[-1.8ex]
+ & {\textbf {DF}} & {\textbf {Sum of Sq}} &{\textbf {RSS}}&
+{\textbf {ACI}} & {\textbf {F-value}} & {\textbf {p-value}} \\
+\\ [-1.8ex]
+\hline \\[-1.8ex]
+
+none       &     &       &2572.0 & 1.0     &       & \\
+norm\_supply  &1    &1173.3 &1398.7 &-1564.4  &2156.8 &$<$ 2.2e-16 ***\\
+norm\_volume  &1    &1301.8 &1270.2 &-1812.3  &2635.0 &$<$ 2.2e-16 ***\\
+
+
+\\ [-1.8ex]
+\hline \\[-1.8ex]
+
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+\end{table}
+
+
+From we want to add the one with ``three stars". Let's add norm\_
+supply first. Then you keep doing this. The R code is below.
+
+
+{\textbf {Code:}}
+\begin{rc}
+model1 = lm(norm\_price~1, data = df)
+summary(model1)
+
+add1(model1, scope = .~.+norm\_supply+norm\_volume, test = 'F')
+
+model2 = update(model1, formula = .~. + norm\_supply)
+summary(model2)
+
+add1(model2, scope = .~.+norm\_volume, test = 'F')
+\end{rc}
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Backward Selection}
+
+As a reverse of the {\underline {Forward Selection}}, Backward Selection
+starts with your full/complex model, and systematically drops terms.
+
+In R, we instead of $ add1() $, we use $ drop1() $for backward 
+selection and conduct the partial $ F $-test and $ update() $.
+In contrast with the adding terms in forward selection, here we are
+going to drop those terms DO NOT result in a {\underline {statistically
+significant}} detriment to GOF.  We drop those terms do not have
+``stars" in the result of $ drop1() $.
+
+
+{\textbf {Code:}}
+\begin{rc}
+model1 = lm(norm_price~norm_volume*norm_supply, data = df)
+summary(model1)
+drop1(model1, test = 'F')
+# use update(model1, .~.-norm_volume*norm_supply) to drop a term.
+# Since this interaction term is significant, we don't want to drop it.
+\end{rc}
+
+
+
+\subsubsection{Stepwise AIC Selection}
+
+
+The partial $ F $-test is the most common {\underline {test-based}}
+model selection method.\\
+Besides it, we also have a {\underline {criterion-based}} approach.
+One of them is known as Akaike's Information Criterion, or 
+{\underline {AIC}} for short.
+
+For a given lnear model, AIC is calculated as follows:
+\begin{equation*}
+AIC =  - 2  \times \mathscr{L} + 2  \times (p + 2),
+\end{equation*}
+where $ \mathscr{L} $ is a measure of GOF named the 
+{\underline {log-likelihood}}, and $ p $ is the number of regression
+parameters in the model, excluding the overall intercept
+(explanatory variables).
+A smaller values of AIC refer to more parsimonious models.
+
+{\textbf {NOTE:}} The value of AIC has no direct interpretation and
+is useful ONLY when you compare it against the AIC of another model.
+Hence, you can decide on which term to add or drop based on the change
+of the AIC values, instead of focusing exclusively on the significance
+of the change via the $ F $-test when you conduct a 
+{\underline {forward or backward selection}}.\\
+
+You can implement stepwise AIC selection yourself by using either
+add1 or drop1 at each stage, but forfunately R provides the built-in
+step function for you.
+
+{\textbf {Progress:}}\\
+You can start with any model you like. Here, let's start with the
+intercept-only model.\\
+
+{\textbf {Code:}}
+\begin{rc}
+model1 = lm(norm_price~1, data = df)
+stepwise_model_selection = step(model1, 
+				scope = .~. + norm_volume*norm_supply
+)
+summary(stepwise_model_selection)
+\end{rc}
+
+
+R would return a list of results, each block of them starts with a 
+regression model and its AIC value, and presents the change of AIC
+by adding or deleting a term $ ( + , - ) $. 
+
+The {\underline {final model}} is stored, and you can check it using
+$ sumamry() $. 
+
+{\textbf {Note:}}\\
+The AIC is sometimes criticized for a tendency to err on the side of
+more complexity and higher $ p $-values. To balance this, you can 
+{\underline {increase}} the penalizing effect by increasing the
+multiplicative contribution of $ p + 2 $ on the RHS. Now is 
+$ 2  \times (p + 2) $, you can try $ 2.5  \times (p + 2) $, etc.
+
+Criterion-based measures are incredibly useful when you have models that
+aren't nested (ruling out the partial $ F $-test).
+
+
+
+
+\subsubsection{BIC selction algorithm}
+Besides AIC, the corrected AIC ($ AIC_{c}) $ and the BIC
+(Bayesian Information Criterion) are alternatives to AIC. They
+impose heavier penalties on complexity than the default AIC.
+
+Also, the adjusted $ R^{2} $ is another selection algorithm. Recall,
+$ R^{2} $ does not penalize the complexity, but, here, the adjusted
+$ R^{2} $ does incorporate a penalty for complexity relative to 
+the sample size $ n $.
+\begin{equation*}
+		\overline{R}^{2} = 1  - \frac{(1 - R^{2})(n - 1)}
+		{n - p - 1},
+\end{equation*}
+where $ p $ is the number of predictor terms. Monitoring
+$  \overline{R}^{2} $ can be useful as a quick check between nested 
+models -- {\underline {a higher value}} points to a preferred model.
+
+
+
+
+\subsection{Residual Diagnostics}
+
+We are going to cover the methods that are essential for determining
+the {\underline {validity}} of your model, 
+{\underline {model diagnostics}}.
+The {\underline {goal}} is to ensure that your model is 
+{\underline {valid and accurately}} represents the relationships in
+your data.
+
+
+
+\subsubsection{Inspecting and Interpreting Residuals}
+
+We can plot a scatterplot of the {\underline {observed-minus-fitted}}
+raw residuals. By assumption, they should appear randomly around zero.
+This plot can also be used to detect {\underline {heteroscedasticity}}.
+
+\begin{figure}[H]
+\center{\includegraphics[scale =.6 ]  {figures/scatterplot_residuals.png}}
+\end{figure}
+
+The figure above shows the scatterplot of the residuals. The one on 
+the left shows a homoscedasticity, good. The one on the right
+is a heteroscedasticity result.
+
+
+{\textbf {Note:}}\\
+Even if your result does not like the figure on the left, you can still
+improve your model by adding explanatory variable, changing the
+treatment of a categorical variable, or performing nonlinear
+transformations of certain continuous variables to reduce 
+nonlinearity.
+
+In R, you can use {\underline {plot()}} function on a 
+{\underline {lm()}} object, it can produce six types of diagnostic
+plot of the fit. You can {\underline {manually select}} a particular
+plot specifying {\underline {which = i}} argument, where $ i $ stands
+for the $ i^{\text{ th }} $ plot.
+
+
+{\textbf {Code:}}
+\begin{rc}
+model1 = lm(norm_price~norm_supply*norm_volume, data = df)
+png('figures/residual_diagnostic_plots.png')
+par(mfrow = c(2,3))
+plot(model1, which = 1)
+plot(model1, which = 2)
+plot(model1, which = 3)
+plot(model1, which = 4)
+plot(model1, which = 5)
+plot(model1, which = 6)
+dev.off()
+\end{rc}
+
+
+\begin{figure}[H]
+\caption{Six types of diagnostic plots.}
+\center{\includegraphics[scale =.8 ]  {figures/residual_diagnostic_plots.png}}
+\end{figure}
+
+The scale-location plot provides
+\begin{equation*}
+\left\lvert 
+		\frac{e_{i}}{ \widehat{\sigma}\left\{ 1 - h_{ii} \right\}
+		^{\frac{1}{2}} }
+\right\rvert ^{\frac{1}{2}}
+\end{equation*}
+
+It is used to reveal tends in the size of the {\underline {
+departure}} of each data point from its fitted value. It is much more
+useful than the raw residuals in detecting things such as
+{\underline {heteroscedasticity}}.
+
+
+
+
+\subsubsection{Assessing Normality}
+
+You can use a normal QQ plot (pass $ which = 2 $) to check the 
+normality.
+
+\begin{rc}
+model1 = lm(norm_price~norm_supply*norm_volume, data = df)
+plot(model1, which = 2)
+\end{rc}
+
+
+
+
+There are also other ways to test for normality, such as Shapiro-Wilk
+test.
+The null is that the data are normally distributed. We can use
+$ shapiro.test() $ in R to implement this test.
+
+
+{\textbf {Code:}}
+\begin{rc}
+model1 = lm(norm_price~norm_volume*norm_supply, df)
+shapiro.test(rstandard(model1))
+#         Shapiro-Wilk normality test
+# 
+# data:  rstandard(model1)
+# W = 0.84736, p-value < 2.2e-16
+# Here, we reject the null, hence, the data are not normally distributed. 
+\end{rc}
+
+
+
+
+\subsubsection{Illustrating outliers, leverage, and influence}
+
+{\textbf {Leverage:}}\\
+The extremity of the values of the {\underline {explanatory variable}}.
+A high-leverage point is an {\underline {observation}} with 
+explanatory values extreme enough to potentially 
+{\underline {significantly affect}} the slopes or trends in the fitted
+model.\\
+An outlier can have a high or low leverage.\\
+
+{\textbf {Influence:}}\\
+An obs with high leverage that DOES affect the estimated trends is
+deemed influential.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

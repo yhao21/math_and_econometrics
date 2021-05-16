@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.31)  13 MAY 2021 23:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.31)  16 MAY 2021 10:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -496,34 +496,105 @@ Underfull \hbox (badness 10000) in paragraph at lines 497--506
 
  []
 
-[9] [10] (./linear_regression.aux) ) 
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 558--561
+
+ []
+
+[10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 661--663
+
+ []
+
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 7
+53.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 753.
+ [12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 816--822
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 827--830
+
+ []
+
+[14]
+<figures/scatterplot_residuals.png, id=62, 688.82344pt x 258.21469pt>
+File: figures/scatterplot_residuals.png Graphic file (type png)
+<use figures/scatterplot_residuals.png>
+Package pdftex.def Info: figures/scatterplot_residuals.png  used on input line 
+899.
+(pdftex.def)             Requested size: 413.29726pt x 154.93pt.
+ [15]
+<figures/residual_diagnostic_plots.png, id=66, 481.8pt x 481.8pt>
+File: figures/residual_diagnostic_plots.png Graphic file (type png)
+<use figures/residual_diagnostic_plots.png>
+Package pdftex.def Info: figures/residual_diagnostic_plots.png  used on input l
+ine 938.
+(pdftex.def)             Requested size: 385.4405pt x 385.4405pt.
+ [16 <./figures/scatterplot_residuals.png (PNG copy)>] [17 <./figures/residual_
+diagnostic_plots.png (PNG copy)>]
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 9
+83.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 983.
+
+Overfull \hbox (9.85997pt too wide) in paragraph at lines 984--985
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (8.15492pt too wide) in paragraph at lines 992--999
+\OT1/cmr/m/n/12 The ex-trem-ity of the val-ues of the $[]$. A high-leverage poi
+nt is an $[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 992--999
+
+ []
+
+[18] (./linear_regression.aux) ) 
 Here is how much of TeX's memory you used:
- 8294 strings out of 480909
- 119565 string characters out of 5905567
- 600227 words of memory out of 5000000
- 25391 multiletter control sequences out of 15000+600000
+ 8353 strings out of 480909
+ 120759 string characters out of 5905567
+ 611227 words of memory out of 5000000
+ 25442 multiletter control sequences out of 15000+600000
  421074 words of font info for 94 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  68i,15n,75p,297b,1810s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/e
-nc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-supe
-r/sfrm1095.pfb>
-Output written on linear_regression.pdf (10 pages, 206571 bytes).
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/d
+vips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr6.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/rsfs/rsfs10.pf
+b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+
+Output written on linear_regression.pdf (18 pages, 364637 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 126 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
