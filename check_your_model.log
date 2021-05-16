@@ -2,8 +2,8 @@ This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**linear_regression.tex
-(./linear_regression.tex
+**check_your_model.tex
+(./check_your_model.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/article.cls
@@ -316,24 +316,23 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count290
 \l__pdf_internal_box=\box56
 )
-(./linear_regression.aux)
-\openout1 = `linear_regression.aux'.
+No file check_your_model.aux.
+\openout1 = `check_your_model.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -404,19 +403,19 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 \c@lstlisting=\count297
-LaTeX Font Info:    Trying to load font information for U+msa on input line 69.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 76.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 69.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 76.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 69
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 76
 .
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/jknapltx/ursfs.fd
@@ -424,26 +423,21 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 88--92
+Underfull \hbox (badness 10000) in paragraph at lines 82--84
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 85--88
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
-
- []
-
-[2] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang2.sty
@@ -452,214 +446,35 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 166--168
-
- []
-
-[3] [4]
-<figures/dummies_in_linear_model.png, id=27, 540.51938pt x 204.01219pt>
-File: figures/dummies_in_linear_model.png Graphic file (type png)
-<use figures/dummies_in_linear_model.png>
-Package pdftex.def Info: figures/dummies_in_linear_model.png  used on input lin
-e 242.
-(pdftex.def)             Requested size: 378.36098pt x 142.80756pt.
- [5 <./figures/dummies_in_linear_model.png (PNG copy)>] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 427--428
-
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[7]
-Overfull \hbox (23.0001pt too wide) in paragraph at lines 458--459
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 471--474
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 475--478
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 492--496
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 497--506
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 558--561
-
- []
-
-[10] [11]
-Underfull \hbox (badness 10000) in paragraph at lines 661--663
-
- []
-
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 7
-53.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 753.
- [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 816--822
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 827--830
-
- []
-
-[14]
-<figures/scatterplot_residuals.png, id=62, 688.82344pt x 258.21469pt>
+<figures/scatterplot_residuals.png, id=8, 688.82344pt x 258.21469pt>
 File: figures/scatterplot_residuals.png Graphic file (type png)
 <use figures/scatterplot_residuals.png>
 Package pdftex.def Info: figures/scatterplot_residuals.png  used on input line 
-899.
+123.
 (pdftex.def)             Requested size: 413.29726pt x 154.93pt.
- [15]
-<figures/residual_diagnostic_plots.png, id=66, 481.8pt x 481.8pt>
-File: figures/residual_diagnostic_plots.png Graphic file (type png)
-<use figures/residual_diagnostic_plots.png>
-Package pdftex.def Info: figures/residual_diagnostic_plots.png  used on input l
-ine 938.
-(pdftex.def)             Requested size: 385.4405pt x 385.4405pt.
- [16 <./figures/scatterplot_residuals.png (PNG copy)>] [17 <./figures/residual_
-diagnostic_plots.png (PNG copy)>]
-LaTeX Font Info:    Trying to load font information for OML+cmr on input line 9
-83.
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 983.
-
-Overfull \hbox (9.85997pt too wide) in paragraph at lines 984--985
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-[][][][][][][][][][] 
- []
-
-
-Overfull \hbox (8.15492pt too wide) in paragraph at lines 992--999
-\OT1/cmr/m/n/12 The ex-trem-ity of the val-ues of the $[]$. A high-leverage poi
-nt is an $[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 992--999
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1000--1003
-
- []
-
-<figures/outlier_leverage_influence.png, id=74, 566.86781pt x 590.205pt>
-File: figures/outlier_leverage_influence.png Graphic file (type png)
-<use figures/outlier_leverage_influence.png>
-Package pdftex.def Info: figures/outlier_leverage_influence.png  used on input 
-line 1010.
-(pdftex.def)             Requested size: 396.80476pt x 413.14067pt.
-[18] [19 <./figures/outlier_leverage_influence.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 1036--1037
-
- []
-
-<figures/volume_leverage.png, id=82, 481.8pt x 481.8pt>
-File: figures/volume_leverage.png Graphic file (type png)
-<use figures/volume_leverage.png>
-Package pdftex.def Info: figures/volume_leverage.png  used on input line 1045.
-(pdftex.def)             Requested size: 240.8994pt x 240.8994pt.
-[20 <./figures/volume_leverage.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1078--1079
-
- []
-
-<figures/cooks_distance_vol.png, id=87, 481.8pt x 481.8pt>
-File: figures/cooks_distance_vol.png Graphic file (type png)
-<use figures/cooks_distance_vol.png>
-Package pdftex.def Info: figures/cooks_distance_vol.png  used on input line 108
-8.
-(pdftex.def)             Requested size: 192.71658pt x 192.71658pt.
-<figures/cooks_distance_built_in_plot.png, id=88, 481.8pt x 481.8pt>
-File: figures/cooks_distance_built_in_plot.png Graphic file (type png)
-<use figures/cooks_distance_built_in_plot.png>
-Package pdftex.def Info: figures/cooks_distance_built_in_plot.png  used on inpu
-t line 1096.
-(pdftex.def)             Requested size: 192.71658pt x 192.71658pt.
-<figures/cooks_distance_with_4-n.png, id=89, 481.8pt x 481.8pt>
-File: figures/cooks_distance_with_4-n.png Graphic file (type png)
-<use figures/cooks_distance_with_4-n.png>
-Package pdftex.def Info: figures/cooks_distance_with_4-n.png  used on input lin
-e 1103.
-(pdftex.def)             Requested size: 240.8994pt x 240.8994pt.
-[21 <./figures/cooks_distance_vol.png> <./figures/cooks_distance_built_in_plot.
-png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1120
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1121--1124
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1125--1127
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1130--1131
-
- []
-
-[22 <./figures/cooks_distance_with_4-n.png>] [23] (./linear_regression.aux) ) 
+ [2]
+[3 <./figures/scatterplot_residuals.png (PNG copy)>] (./check_your_model.aux) )
+ 
 Here is how much of TeX's memory you used:
- 8390 strings out of 480909
- 121907 string characters out of 5905567
- 611227 words of memory out of 5000000
- 25474 multiletter control sequences out of 15000+600000
- 421074 words of font info for 94 fonts, out of 8000000 for 9000
+ 8270 strings out of 480909
+ 119154 string characters out of 5905567
+ 602569 words of memory out of 5000000
+ 25369 multiletter control sequences out of 15000+600000
+ 418740 words of font info for 85 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 68i,15n,75p,297b,1810s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/
-usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</u
-sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
-/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
-local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/l
-ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loc
-al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/loc
-al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
-/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/t
-exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texliv
-e/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2020
-/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2020/texmf-d
-ist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on linear_regression.pdf (23 pages, 531283 bytes).
+ 68i,7n,75p,296b,1808s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
+ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
+texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on check_your_model.pdf (3 pages, 133624 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 98 compressed objects within 1 object stream
+ 44 PDF objects out of 1000 (max. 8388607)
+ 30 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

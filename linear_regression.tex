@@ -999,12 +999,139 @@ An outlier can have a high or low leverage.\\
 
 {\textbf {Influence:}}\\
 An obs with high leverage that DOES affect the estimated trends is
-deemed influential.
+deemed influential.\\
+
+{\textbf {Example:}}\\
+The figure below shows how outlier with different leverage level affect
+the regression model.
+
+
+\begin{figure}[H]
+		\center{\includegraphics[scale =0.7 ]  {figures/outlier_leverage_influence.png}}
+\end{figure}
+
+
+
+The solid black brick stands for different outliers. The solid line
+represent the original regression line while the dash line present
+the new regression line as a result of including the outlier.
+
+
+
+
+\subsubsection{Calculating Leverage}
+
+
+With $ n $ obs, the leverage of the $ i $th point ($ i = 1,...,n $ )
+is denoted $ h_{ii} $. These are {\underline {diagonal}} elements
+of the $ n  \times n $ matrix $ H $ ($ i $th row and $ i $th column).
+\begin{equation*}
+H = \bm{X}(\bm{X}^{T}\bm{X})^{ - 1}\bm{X}^{T}
+\end{equation*}
+
+
+In R, you can use $ hatvalues() $ and pass your regression model to
+obtain the leverage.
+
+{\textbf {Code:}}\\
+\begin{rc}
+model0 = lm(norm_price~norm_volume, data = df)
+vol_leverage = hatvalues(model0)
+\end{rc}
+
+
+
+\begin{figure}[H]
+		\center{\includegraphics[scale =.5 ]  {figures/volume_leverage.png}}
+\end{figure}
+
+
+
+
+\subsubsection{Cook's Distance}
+
+Leverage is not enough to determine the overall {\underline {influence}} 
+of each obs on a fitted model. We can use {\underline {Cook's
+Distance}} to measure the influence.
+
+\begin{equation*}
+D_{i} = \sum\limits_{j = 1} ^n
+\frac{( \widehat{y}_{j} -  \widehat{y}_{j}^{ (- i)})^{2}}
+{(p + 1) \widehat{\sigma}^{2}}, 
+\quad i,j = 1,...,n,
+\end{equation*}
+
+
+where $  \widehat{y}_{j}^{( - i)} $ represents the estimated value
+of obs $ j $ {\underline {without}} the $ i $th observation. And
+$ p $ is the number of explanatory variables, 
+$   \widehat{\sigma}^{2} $ is the estimated variance.
+
+The larger the value of $ D_{i} $, the larger the influence the 
+$ i $th observation has on the fitted model. 
+Some people say if $ D_{i} > 1 $, the point should be considered
+influential. Another argument is that $ D_{i} > \frac{4}{n} $.
+
+In R, use cooks.distance() to implement the cook's distance.
+
+
+{\textbf {Code:}}\\
+\begin{rc}
+cook = cooks.distance(model0)
+png('figures/cooks_distance_vol.png')
+plot(norm_volume, cook, data = df, xlab = 'volume', ylab = 'cooks')
+dev.off()
+\end{rc}
+
+
+\begin{figure}[H]
+		\center{\includegraphics[scale =.4 ]  {figures/cooks_distance_vol.png}}
+\end{figure}
+
+
+Or you can use plot(regression model, which = 4) to plot cooks 
+distance.
+
+\begin{figure}[H]
+		\center{\includegraphics[scale =0.4 ]  {figures/cooks_distance_built_in_plot.png}}
+\end{figure}
+
+
+We can further implement that $ D_{i} > \frac{4}{n} $ rule in the plot.
+
+\begin{figure}[H]
+		\center{\includegraphics[scale =.5 ]  {figures/cooks_distance_with_4-n.png}}
+\end{figure}
 
 
 
 
 
+\subsection{Collinearity}
+
+Collinearity, also called multicollinearity, happends when two or
+more of the explanatory variables are highly correlated with each 
+other. It would be detrimental to any subsequent model-based 
+inference.
+
+\subsubsection{Signal of the collinearity}
+1. $ F $-test result is significant, but none of the individual
+$ t $-test results are significant.\\
+
+2. The sign of a given coef estimate contradicts what you would 
+reasonably expect to see, e.g., drinking more wine resulting in a 
+lower blood alcohol level.\\
+
+3. Estimators are associated with unusually high SE or vary wildly when
+the model is fitted to differnt random record subsets of the data.\\
+
+
+
+{\textbf {Note:}}\\
+
+If two or more {\underline {explanatory variables}} in your model
+are collinear, then the estimates (coef) of regress $ y $ on each of
+them respectively would be almost the same.
 
 
 
