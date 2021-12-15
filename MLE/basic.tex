@@ -1,0 +1,171 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newtheorem{thm}{Theorem}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[sort,comma]{natbib}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+
+
+
+\title{}
+\author{}
+\date{}
+
+
+\begin{document}
+%\maketitle
+
+
+
+\section{Process}
+
+Write LF, and LLF.
+Let FOC wrt $ \theta $ equals to zero.
+Check if SOC wrt $ \theta $ is negative.
+
+
+There are many optimization techniques to maximize likelihood, i.e., Newton's method,
+Fisher scoring, BFGS, etc.
+
+
+\noindent\fbox{%
+\parbox{\textwidth}{%
+{\textbf {Note:}}
+
+When the model is assumed to be Gaussian, the MLE estimates are equivalent to the OLS.
+
+}%
+}\\
+
+
+
+
+
+\subsection{Example: Poisson}
+
+Suppose we have a sample of n obs $ Y_1, Y_2, ..., Yn $ which can be treated as 
+realizations of independent Poisson RVs with $ Yi \sim P(\mu_{i}) $. 
+
+Also, suppose we want to let the mean $ \mu_{i} $ (and therefore the variance) 
+depend on a vector of explanatory variables $ X_{i} $. We could form a simple linear
+model as 
+\begin{equation*}
+\mu_{i} = \bm{x}_{i}' \cdot \bm{\theta}
+\end{equation*}
+
+
+{\textbf {NOTE:}}
+
+This model has the disadvantage that the linear predictor on the RHS can assume any
+real value, whereas the Poisson mean on the LHS, which represents an expected count, 
+has to be non-negative. 
+
+A solution to this is to model the logarithm of the mean using a linear model.
+\begin{align*}
+		log(\mu_{i}) &= \bm{x}_{i}' \cdot \bm{\theta}\\
+		\mu_{i} &= exp(\bm{x_{i}}' \cdot \bm{\theta})
+\end{align*}
+
+
+Our goal is to find the most proper $ \bm{\theta} $ using MLE.
+
+Density of Poisson:
+\begin{equation*}
+		f(y;\mu) = \frac{e^{ - \mu} \mu^{y}}{y!}
+\end{equation*}
+
+Write down the LLF without constant $ log(y!) $:
+\begin{equation*}
+LLF(\theta) = \sum\limits_{} ^	(y_{i}log(\mu_{i}) - \mu_{i})
+\end{equation*}
+
+We can substitute $ \mu_{i} = exp(\bm{x_{i}}' \cdot \bm{\theta}) $ into LLF and solve
+the equation to get $ \bm{\theta} $ that max the likelihood.
+
+Once we have $ \bm{\theta} $, we can predict the expected value of the mean by
+multiplying $ \bm{x_{i}} $ by $ \bm{\theta} $.
+
+
+
+
+
+
+
+\subsection{Example: Normal Distribution}
+
+Density:
+\begin{equation*}
+		f(y|\mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} exp \left(- \frac{1}{2} \left( 
+				\frac{y - \mu}{\sigma}
+				\right)^{2} \right)
+\end{equation*}
+
+LF:
+\begin{equation*}
+L(\mu,\sigma | \bm{y}) = \prod_{i = 1} ^ n f(y_{i}|\mu,\sigma)
+\end{equation*}
+LLF:
+\begin{align*}
+\ln L(\theta|\bm{y}) &=  - \frac{1}{2} \sum\limits_{i = 1} ^n
+\left[ \ln 2 \pi  + \ln \sigma^{2} + 
+\left( \frac{y_{i} - \mu}{\sigma} \right)^{2} \right] \\
+&=  - \frac{n}{2}\ln 2 \pi -\frac{n}{2} \ln \sigma^{2}- \frac{1}{2}\sum\limits_{i = 1} ^n
+ \left( \frac{y_{i} - \mu}{\sigma} \right) ^{2}\\
+&=  - \frac{n}{2} \ln 2 \pi -\frac{n}{2}\ln \sigma^{2} - \frac{1}{2}\frac{1}{\sigma^{2}}
+\sum\limits_{i = 1} ^n (y_{i} - \mu)^{2}	
+\end{align*}
+we observe $ y_{i} $ (dependent variable). 
+For $ y = a + bx + \varepsilon $, $ \mu = E(y) = a + bx $.
+
+
+FOC wrt $ \mu $ and $ \sigma^{2} $:
+\begin{align*}
+\frac{\partial \ln L }{\partial \mu }  &=  - \frac{1}{\sigma^{2}}
+\sum\limits_{i = 1} ^n (y_{i} - \mu)	= 0\\
+\widehat{\mu}_{ML} &= \frac{1}{n}\sum\limits_{i = 1} ^n y_{i} =  \overline{y}_{n},	\quad
+ \text{ sample mean }
+\end{align*}
+
+\begin{align*}
+\frac{\partial \ln L }{\partial \sigma^{2} } &=  - \frac{n}{2} \frac{1}{\sigma^{2}}
+ + \frac{1}{2}\frac{1}{\sigma^{4}}\sum\limits_{i = 1} ^n (y_{i} - \mu)^{2} = 0\\
+ \sigma^{2} &= \frac{1}{n}\sum\limits_{i = 1} ^n (y_{i} - \mu)^{2}	\\
+  \widehat{\sigma}_{ML}^{2} &= \frac{1}{n}\sum\limits_{i = 1} ^n (y_{i} -
+	\overline{y}_{n})^{2}	\\
+\end{align*}
+
+
+
+
+
+%\bibliographystyle{plainnat}
+%\bibliography{my_bib}
+
+\end{document}
+
