@@ -146,7 +146,7 @@ For $ y = a + bx + \varepsilon $, $ \mu = E(y) = a + bx $.
 
 FOC wrt $ \mu $ and $ \sigma^{2} $:
 \begin{align*}
-\frac{\partial \ln L }{\partial \mu }  &=  - \frac{1}{\sigma^{2}}
+\frac{\partial \ln L }{\partial \mu }  &=   \frac{1}{\sigma^{2}}
 \sum\limits_{i = 1} ^n (y_{i} - \mu)	= 0\\
 \widehat{\mu}_{ML} &= \frac{1}{n}\sum\limits_{i = 1} ^n y_{i} =  \overline{y}_{n},	\quad
  \text{ sample mean }
@@ -160,6 +160,24 @@ FOC wrt $ \mu $ and $ \sigma^{2} $:
 	\overline{y}_{n})^{2}	\\
 \end{align*}
 
+
+
+
+
+\section{OLS and MLE}
+
+\subsection{Sometimes Different}
+OLS does not make a normality assumption for the model errors. OLS can be used under 
+different distributional assumptions and the estimator will still make sense as the 
+minimum variance linear unbiased estimator.
+
+Maximum likelihood (ML) can also accommodate different distributions, but the 
+distribution has to be chosen in advance. If the actual distribution appears to be 
+different from the assumed distribution, ML estimator will no longer make sense as the 
+estimator that maximizes the joint probability density of the data.
+
+Thus we can say that in a particular application ML makes a more stringent assumption 
+about the model errors than OLS does.
 
 
 
