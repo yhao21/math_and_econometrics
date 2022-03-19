@@ -1,0 +1,114 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newtheorem{thm}{Theorem}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[sort,comma]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+
+
+
+\title{}
+\author{}
+\date{}
+
+
+\begin{document}
+\section{Bernoulli distribution}
+Can be used to describe random experiments with only two outcomes.
+
+\begin{table}[h!]
+\begin{center}
+\begin{threeparttable}
+
+\begin{tabular}{c|c|c}
+$ x $ & 0 & 1 \\
+\hline \\[-1.8ex]
+$ f_{x}(x) $& $ 1 - \theta $ & $ \theta $
+\end{tabular}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+
+\begin{equation*}
+f_{x}(x;\theta) = \theta^{x}(1 - \theta)^{1 - x}, 
+\end{equation*}
+where $ x = 0,1, \quad \theta \in [0,1] $.
+
+
+
+
+
+\subsection{Binomial distribution}
+Random experiments in Bernoulli distribution can be extended to $ n $ repetitions,
+and receive the {\textbf {Binomial distribution}}.
+
+{\textbf {Example:}}
+Tossing a coin $ n $ times,
+
+Define
+\begin{equation*}
+\mathbb{P}(H) = \theta, \quad \mathbb{P}(T) = 1 - \theta
+\end{equation*}
+$ X: \text{ the total number of $ H $s in $ n $ trials } $.
+\begin{align*}
+f_{x}(x;\theta)&= \binom{n}{x}\theta^{x}(1 - \theta)^{n - x}, \quad x \in [0,n]\\
+\binom{n}{x}&= \frac{n!}{(n - x)!x!}
+\end{align*}
+
+{\textbf {Example:}}
+tossing twice ($ n = 2 $), the outcome sets would be 
+\begin{equation*}
+S = \left\{ (HH),(HT),(TH),(TT) \right\} 
+\end{equation*}
+The probability of Head occurs one time ($ x = 1 $)
+\begin{equation*}
+\mathbb{P}(X = x = 1) = \mathbb{P}(HT,TH) = \binom{2}{1}(\frac{1}{2})^{1}
+(1 - \frac{1}{2})^{2 - 1} = 2  \times \frac{1}{2} \times \frac{1}{2} = \frac{1}{2}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{my_bib}
+
+\end{document}
+
