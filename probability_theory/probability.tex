@@ -41,10 +41,108 @@
 
 \begin{document}
 \maketitle
-\section{CDF and PDF}
-\begin{equation*}
 
+
+\section{CDF and PDF}
+CDF:
+\begin{equation*}
+F_{X}(x) = \int_{ - \infty }^{x}f_{x}(u)du, \quad f_{x}(x) \ge 0, \forall x \in \mathbb{R} 
 \end{equation*}
+
+
+\subsection{Probability model}
+Probability model $ \Phi $ is a collection of pdf indexed by a set of unknown parameters
+$ \bm{\theta} $; one density for each possible value of $ \bm{\theta} $ in the parameter
+space $ \Theta $.
+\begin{equation*}
+\Phi = \left\{ f(x,\bm{\theta}), \bm{\theta}\in \Theta, x \in \mathbb{R}_{X} \right\} 
+\end{equation*}
+
+{\textbf {Support}} of the density $ f_{x}(x) $ is the range of values of the RVs for which the
+density function is {\textbf {positive}}.
+\begin{equation*}
+\mathbb{R}_{X}:=\left\{ x \in \mathbb{R}_{X}: f_{x}(x) > 0 \right\} 
+\end{equation*}
+
+Example:
+
+Binomial distribution
+\begin{equation*}
+\Phi = \left\{ f(x;\theta) = \binom{x}{n}\theta^{x}(1 - \theta)^{n - x},
+\theta \in (0,1), x \in [0,n], n = 1,2,...\right\} 
+\end{equation*}
+
+
+\section{Moments}
+\begin{equation*}
+	E[h(X)] = \int_{ - \infty }^{\infty }h(x)f(x;\bm{\theta})dx, 
+\end{equation*}
+where $ h(X) $ can be $ X^{r}, e^{tx}, e^{itx} $
+
+
+\subsection{Mean}
+$ h(X):= X , \quad x \in \mathbb{R}_{X}$, 
+\begin{align*}
+	E(X) &= \int_{ - \infty }^{\infty } x \cdot f_{x}(x;\bm{\theta})dx, \text{ for continuous RVs }\\
+	&= \sum\limits_{x_{i}\in \mathbb{R}_{X}} x_{i}\cdot f_{x}(x_{i};\bm{\theta}), \text{ for 
+	discrete RVs}
+\end{align*}
+
+Properties:
+\begin{align*}
+E(c)&= c\\
+E(aX_1 + bX_2)&= aE(X_1) + bE(X_2)
+\end{align*}
+
+
+
+
+\subsection{Variance}
+For calculating the variance, $ h(X):= [X - E(X)]^{2} $
+\begin{align*}
+	Var(X):=E[(X - E(X))^{2}] &= \int_{ - \infty }^{\infty }(x - \mu)^{2}f_{x}(x;\bm{\theta})dx \\
+	&= E(X^{2}) - (E(X))^{2}
+\end{align*}
+
+Variance measures the dispersion around the mean.
+
+For {\textbf {independent RVs,}}
+\begin{align*}
+Var(c) &= 0\\
+Var(aX_1 + bX_2)&= a^{2}Var(X_1) + b^{2}Var(X_2)\\
+Var \left( \sum\limits_{i = 1} ^n a_{i}X_{i}	 \right) &= \sum\limits_{i = 1} ^n a_{i}^{2}Var(X_{i})	
+\end{align*}
+
+
+\subsubsection{Chebyshev's inequality}
+Let $ X $ be a RV with bouned variance:
+\begin{equation*}
+\mathbb{P}\left( \left\lvert X - E(X) \right\rvert > \varepsilon  \right) \le 
+\frac{Var(X)}{\varepsilon^{2}}, \quad \text{ for any } \varepsilon > 0
+\end{equation*}
+$ X - E(X) $ deviation from the mean.
+
+
+\subsubsection{Standardize variables}
+
+\begin{equation*}
+z = \frac{X - \mu}{\sigma}
+\end{equation*}
+where $ \mu , \sigma $ are mean and standard deviation. They are {\textbf {constant}}.
+Before standardization, 
+\begin{align*}
+E(X) &= \mu\\
+Var(X) &= \sigma^{2}
+\end{align*}
+
+After standardization,
+\begin{align*}
+E(z) &= E \left( \frac{X - \mu}{\sigma} \right)  = \frac{1}{\sigma}E(X - \mu) = \frac{1}{\sigma}
+E(\mu - \mu) = 0\\
+Var(z)&= Var \left( \frac{X - \mu}{\sigma} \right) = \frac{1}{\sigma^{2}}Var(X - \mu)=
+\frac{1}{\sigma^{2}}(Var(X) - 0) = \frac{1}{\sigma^{2}}\sigma^{2} = 1
+\end{align*}
+After standardization, we have mean 0 and variance 1, rather $ \mu, \sigma $.
 
 
 

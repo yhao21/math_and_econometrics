@@ -1,0 +1,76 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newtheorem{thm}{Theorem}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[sort,comma]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+
+
+
+\title{Modeling}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+Task of modeling: choose the most appropriate family (density) for the data.
+\begin{itemize}
+\item 1. Define the probability model in terms of unknown parameters $ \bm{\theta} $, and let
+	the data.
+\item 2. Make statistical inference, choose its appropriate value from parameter space 
+	$ \bm{\Theta} $.
+\end{itemize}
+How do we make the original decision regarding which probability model is appropriate?
+\begin{itemize}
+\item 1. Compare the distribution shapes to the histogram of the observed data.
+	\begin{itemize}
+	\item What if two distributions have very similar shape?
+	\item The best way to distinguish them is via index measures based on moments. 
+	\end{itemize}
+\item 2. In addition to the shapes and parameters, one should consider the {\textbf {support}}
+	of the density.
+	\begin{itemize}
+	\item Consider Beta model, the support is from 0 to 1. It is useful to model the exam scores
+		(scores are from 0\% to 100\%).
+	\item It will not be a good idea to use Normal distribution to model exam scores, because the
+		the support of the Normal distribution is from $  - \infty  $ to $  + \infty  $.
+	\end{itemize}
+\end{itemize}
+
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{my_bib}
+
+\end{document}
+
