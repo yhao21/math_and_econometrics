@@ -40,7 +40,6 @@
 
 
 \begin{document}
-\maketitle
 
 
 \section{CDF and PDF}
@@ -143,6 +142,183 @@ Var(z)&= Var \left( \frac{X - \mu}{\sigma} \right) = \frac{1}{\sigma^{2}}Var(X -
 \frac{1}{\sigma^{2}}(Var(X) - 0) = \frac{1}{\sigma^{2}}\sigma^{2} = 1
 \end{align*}
 After standardization, we have mean 0 and variance 1, rather $ \mu, \sigma $.
+
+
+
+\subsection{Higher central moments}
+
+Central moments:
+\begin{equation*}
+\mu_{r}(\bm{\theta}):=E(X^{r}) = \int_{ - \infty }^{\infty } (x - \mu)^{r}f(x;
+\bm{\theta})dx, \quad r = 2,3,...
+\end{equation*}
+\begin{align*}
+\mu_2 &= \mu_2' - (\mu_1')^{2} = \kappa_2 = Variance\\
+\end{align*}
+
+\subsubsection{Skewness coefficient}
+The skewness coefficient is defined as the standardized third central moments,
+\begin{equation*}
+\alpha_3(X) = \frac{\mu_3}{(\sqrt {\mu_2})^{3}},\quad \mu_2 = Var = \sigma^{2}
+\end{equation*}
+If the distribution is {\textbf {symmetric}} around the mean, then,
+\begin{equation*}
+\alpha_3 = 0.
+\end{equation*}
+{\textbf {But the reverse does not hold!}} The coefficient of skewness = 0 does not mean
+the distribution is symmetric.
+
+If $ \alpha_3 > 0 $, tail on the right.
+\begin{figure}[ht]
+    \centering
+		\scalebox{.7}{\incfig{right-tail}}
+    \label{fig:right-tail}
+\end{figure}
+
+
+
+\subsubsection{Kurtosis}
+The Kurtosis coefficient measures peakedness in relation to tails. 
+{\textbf {The usefulness of the kurtosis coefficient is reduced if the distribution
+is not symmetric.}}
+
+\begin{equation*}
+\alpha_4(X) = \frac{\mu_4}{(\mu_2)^{2}}
+\end{equation*}
+The Kurtosis is the standardized version of the fourth central moment.
+
+We can use the {\textbf {excess kurtosis}} $ (\alpha_4 - 3) $ comparing the peakedness
+of a distribution to the Normal distribution.
+The Kurtosis of the Normal distribution is 3, i.e., $ \alpha_4 = 3 $.
+
+
+\begin{itemize}
+\item If a distribution is flatter than the Normal distribution, $ \alpha_4 < 3 $.
+We call it platykurtic.
+\item If a distribution is steeper than the Normal distribution, $ \alpha_4 > 3 $.
+We call it leptokurtic.
+\end{itemize}
+page 119
+
+
+\subsubsection{Invariance of skewness and kurtosis}
+
+They are invariant to location and scale changes.
+For any RV $ X $ whose first four moments exist:
+\begin{align*}
+\alpha_3(X) &= \alpha_3(a + bX)\\
+\alpha_4(X) &= \alpha_4(a + bX)
+\end{align*}
+
+\subsubsection{The mode and the median}
+
+The mode for differentiable pdf:
+\begin{equation*}
+\frac{df(x)}{dx} = 0, \quad s.t., \frac{df^{2}(x)}{dx^{2}}\Bigg|_{x = m_0} < 0
+\end{equation*}
+Solve for $ x $.
+
+
+
+The median, $ x_{\frac{1}{2}} $:
+cdf $ F(\cdot ) $
+\begin{equation*}
+F(x_{\frac{1}{2}}) = \frac{1}{2}, \text{ and $ x_{\frac{1}{2}} $ is unique }
+\end{equation*}
+solve for $ x $.
+
+
+\subsubsection{Quantiles}
+The $ p $th quantile, denoted by $ x_{p} $:
+\begin{equation*}
+		F(x_{p}) \ge p, \text{ for } p \in [0,1]
+\end{equation*}
+Or more formally,
+\begin{equation*}
+x_{p} := \inf_{x \in \mathbb{R}_{X}}\left\{ x:F_{X}(x) \ge p  \right\} , \text{ for }
+p \in (0,1)
+\end{equation*}
+
+{\textbf {The value of $ p $ is known as the $ p $th percentile.}}
+\begin{itemize}
+\item The first quantile (the lower quantile): $ x_{\frac{1}{4}} = F^{-}(0.25) $
+\item The third quantile (the upper quantile): $ x_{\frac{3}{4}} = F^{-}(0.75) $
+\end{itemize}
+
+The Quantile function
+\begin{equation*}
+F^{ - }_{X}(\cdot ): (0,1)\rightarrow \mathbb{R}_{X}
+\end{equation*}
+It is not the same as the inverse function $ F^{ - 1}_{X}(\cdot ) $.
+The inverse function exists only if the cdf is one-to-one, continuous and strictly
+increasing.
+
+
+
+\subsubsection{The inverse probability integral transformation}
+For any continuous RV $ X $ with cdf such that $ u = F_{X}(x) $ is invertible, 
+i.e., $ x = F^{ - 1}(u) $, we can make the transformation.
+
+Example:
+
+For RV $ u = F(X) $ follows uniform distribution
+\begin{equation*}
+u = F(X) \sim U(0,1)
+\end{equation*}
+we want to transform it into an exponentially distributed RV $ X $ with 
+\begin{equation*}
+F(x) = 1 - e^{ - \theta x}, \quad x > 0
+\end{equation*}
+we can let $ u = 1 - e^{ - \theta x} $, then
+\begin{align*}
+e^{ - \theta x} &= 1 - u\\
+x &= F_{X}^{ - 1}(u) =  \frac{1}{\theta}\ln (1 - u), \quad u \in (0,1)
+\end{align*}
+
+This result can be used to simulate exponentially distributed RVs using uniformly
+distributed RVs.
+
+
+
+
+\subsection{Inequalities}
+
+\subsubsection{General Chebyshev's inequality}
+Let $ X(.): S \rightarrow \mathbb{R}_{X}:=(0, \infty ) $ be a positive RV. Let
+$ g(.):(0,\infty ) \rightarrow (0,\infty ) $ be a positive and increasing function.
+Then for each $ \varepsilon > 0 $:
+\begin{equation*}
+\mathbb{P}(g(X) \ge  \varepsilon)	\le \frac{E(g(X))}{g(\varepsilon)}
+\end{equation*}
+
+
+\subsubsection{Markov's inequality}
+Let $ X $ be a RV such that $ E(\left\lvert X \right\rvert^{p} ) < \infty $, for
+$ p > 0 $:
+\begin{equation*}
+\mathbb{P}(\left\lvert X \right\rvert  \ge  \varepsilon) \le  
+\frac{E(\left\lvert X \right\rvert ^{p})}{\varepsilon^{ p}}
+\end{equation*}
+When $ X $ equals to $ X - E(X) $, we receive
+\begin{equation*}
+\mathbb{P}(\left\lvert X - E(X) \right\rvert > \varepsilon ) \le  
+\frac{Var(X)}{\varepsilon^{2}}, \quad \text{ for any  } \varepsilon > 0
+\end{equation*}
+
+
+\subsubsection{Jensen's inequality}
+
+Let $ \varphi(\cdot ): \mathbb{R} \rightarrow \mathbb{R}  $ be a convex function
+\begin{equation*}
+\lambda \varphi(x) + (1 - \lambda)\varphi(y) \ge  \varphi(\lambda x + (1 - \lambda y))
+, \quad \lambda \in (0,1), x, y \in \mathbb{R}
+\end{equation*}
+
+\begin{figure}[ht]
+    \centering
+		\scalebox{.7}{\incfig{convex}}
+    \label{fig:convex}
+\end{figure}
 
 
 
