@@ -40,92 +40,46 @@
 
 
 \begin{document}
-\section{Bernoulli distribution}
-Can be used to describe random experiments with only two outcomes.
-
-\begin{table}[h!]
-\begin{center}
-\begin{threeparttable}
-
-\begin{tabular}{c|c|c}
-$ x $ & 0 & 1 \\
-\hline \\[-1.8ex]
-$ f_{x}(x) $& $ 1 - \theta $ & $ \theta $
-\end{tabular}
-\end{threeparttable}
-\end{center}
-\end{table}
+\maketitle
 
 
+\section{$ \int_{}^{} xe^{x}dx $}
+
+
+To solve this, we need this
 \begin{equation*}
-f_{x}(x;\theta) = \theta^{x}(1 - \theta)^{1 - x}, 
+\int_{}^{} udv = uv - \int_{}^{} v du
 \end{equation*}
-where $ x = 0,1, \quad \theta \in [0,1] $.
+Let $ u = x $, then $ dv = e^{x}dx $. We can also know $ du = dx $.
 
-
-
-
-
-\subsection{Binomial distribution}
-Random experiments in Bernoulli distribution can be extended to $ n $ repetitions,
-and receive the {\textbf {Binomial distribution}}.
-
-{\textbf {Example:}}
-Tossing a coin $ n $ times,
-
-Define
-\begin{equation*}
-\mathbb{P}(H) = \theta, \quad \mathbb{P}(T) = 1 - \theta
-\end{equation*}
-$ X: \text{ the total number of $ H $s in $ n $ trials } $.
+What is $ v $?
 \begin{align*}
-f_{x}(x;\theta)&= \binom{n}{x}\theta^{x}(1 - \theta)^{n - x}, \quad x \in [0,n]\\
-\binom{n}{x}&= \frac{n!}{(n - x)!x!}
+v &= \int_{}^{} dv = \int_{}^{} e^{x}dx\\
+&= e^{x}
 \end{align*}
 
-{\textbf {Example:}}
-tossing twice ($ n = 2 $), the outcome sets would be 
+Now we can solve this question:
+\begin{align*}
+\int_{}^{} xe^{x}dx &= \int_{}^{} u dv = uv - \int_{}^{} vdu\\
+&= xe^{x} - \int_{}^{} e^{x}dx\\
+&= xe^{x} - e^{x} + c
+\end{align*}
+
+
+
+
+{\textbf {Solve the mean of the exponential distribution}}\\
+Give the density of the exponential distribution:
 \begin{equation*}
-S = \left\{ (HH),(HT),(TH),(TT) \right\} 
+f(x;\lambda) = \lambda e^{ - \lambda x}, \lambda \in \mathbb{R}_{+}, x \in \mathbb{R}
+_{+}
 \end{equation*}
-The probability of Head occurs one time ($ x = 1 $)
-\begin{equation*}
-\mathbb{P}(X = x = 1) = \mathbb{P}(HT,TH) = \binom{2}{1}(\frac{1}{2})^{1}
-(1 - \frac{1}{2})^{2 - 1} = 2  \times \frac{1}{2} \times \frac{1}{2} = \frac{1}{2}
-\end{equation*}
-
-
-
-
-
-
-\section{Uniform}
-
-
-\section{Poisson}
-
-
-\section{Normal}
-
-
-
-\section{Exponential}
-\begin{equation*}
-\Phi = \left\{ f(x;\lambda) = \lambda e^{ - \lambda x}, \quad
-\lambda \in \mathbb{R}_{ + }, x \in \mathbb{R}_{ + }\right\} 
-\end{equation*}
-
-\subsection{Mean}
 \begin{align*}
 E(x)&= \int_{0}^{\infty } x \lambda e^{ - \lambda x}dx\\
 &= \lambda \int_{0}^{\infty } x e^{ - \lambda x}dx\\
 u = x &, dv =  e^{ - \lambda x}dx\\
 v&= \int_{}^{} dv = \int_{}^{}  e^{ - \lambda x}dx =  - \frac{1}{\lambda}e^{ - \lambda
 x}\\
-\end{align*}
-
-
-\begin{align*}
 E(x) = \lambda \int_{0}^{\infty } xe^{ - \lambda x}dx
 &= \lambda \left[ uv \Bigg|^{\infty }_{0} - \int_{0}^{\infty }vdu  \right] \\
 &= \lambda \left[  - \frac{x}{\lambda}e^{ - \lambda x} \Bigg|^{\infty }_{0}
@@ -135,6 +89,24 @@ E(x) = \lambda \int_{0}^{\infty } xe^{ - \lambda x}dx
 &= 0 - ( - \frac{1}{\lambda})\\
 E(x)&= \frac{1}{\lambda}
 \end{align*}
+
+
+
+
+
+\section{Taylor Exansion}
+\begin{align*}
+f(x)&= \sum\limits_{n = 0} ^\infty \frac{f^{(n)}(a)(x - a)^{n}}{n!}\\
+&= \frac{f(a)\cdot 1}{1} + f'(a)(x - a) + \frac{1}{2}f''(a)(x - a)^{2} + ...
+\end{align*}
+where
+\begin{equation*}
+f^{(0)}(a) = f(a), \quad 0! = 1
+\end{equation*}
+
+
+
+
 
 
 

@@ -299,9 +299,9 @@ $ p > 0 $:
 \mathbb{P}(\left\lvert X \right\rvert  \ge  \varepsilon) \le  
 \frac{E(\left\lvert X \right\rvert ^{p})}{\varepsilon^{ p}}
 \end{equation*}
-When $ X $ equals to $ X - E(X) $, we receive
+When $ X $ equals to $ X - E(X) $ and $ p = 2 $, we receive
 \begin{equation*}
-\mathbb{P}(\left\lvert X - E(X) \right\rvert > \varepsilon ) \le  
+\mathbb{P}(\left\lvert X - E(X) \right\rvert \ge  \varepsilon ) \le  
 \frac{Var(X)}{\varepsilon^{2}}, \quad \text{ for any  } \varepsilon > 0
 \end{equation*}
 
@@ -316,10 +316,66 @@ Let $ \varphi(\cdot ): \mathbb{R} \rightarrow \mathbb{R}  $ be a convex function
 
 \begin{figure}[ht]
     \centering
-		\scalebox{.7}{\incfig{convex}}
+		\scalebox{.5}{\incfig{convex}}
     \label{fig:convex}
 \end{figure}
 
+
+
+\section{Joint Distribution}
+Two continuous RV, $ X, Y $,
+\begin{align*}
+		\mathbb{P}(s:X(s) \le x) &= P_{X}(( - \infty , x]) = F_{X}(x), \quad x \in \mathbb{R}\\
+		\mathbb{P}(s:Y(s) \le y) &= P_{Y}(( - \infty , y]),= F_{Y}(y), \quad  y \in \mathbb{R}\\
+\end{align*}
+
+The {\textbf {joint cdf}} is defined by:
+\begin{align*}
+		F_{XY}(.,.)&: \mathbb{R}^{2} \rightarrow [0,1]\\
+		F_{XY}(x,y) = \mathbb{P}\left\{ s:X(s) \le x, Y(s) \le y \right\} &= P_{XY}(
+		( - \infty ,x] \times ( - \infty , y]), \quad (x,y) \in \mathbb{R}^{2}
+\end{align*}
+
+\begin{equation*}
+F(x,y) = \int_{ - \infty }^{x}\int_{ - \infty }^{y} f(u,v)du dv 
+\end{equation*}
+where $ f(x,y) > 0 $ is known as the {\textbf {joint density function}}.
+
+If $ F(\cdot ) $ is differentiable, we can derive the join density by
+\begin{align*}
+f(x,y) = \frac{\partial^{2}F(x,y)  }{\partial x \partial y }
+\end{align*}
+\noindent\fbox{%
+\parbox{\textwidth}{%
+Example:\\
+Given the joint cdf of the bivariate Exponential distribution:
+\begin{equation*}
+F(x,y) = 1 - e^{ - x} - e^{ - y} + e^{ - x - y},
+\end{equation*}
+The joint density can be derived by
+\begin{align*}
+\frac{\partial F(x,y) }{\partial x }&= e^{ - x} - e^{ - x - y}\\
+\frac{\partial^{2}F(x,y)  }{\partial x \partial y }&= e^{ - x - y}
+\end{align*}
+where $ x, y \ge 0 $
+}%
+}\\
+
+In the univariate case, {\textbf {the joint density takes values greater than one,
+i.e., }}
+\begin{equation*}
+		f(.,.) : \mathbb{R} \times \mathbb{R} \rightarrow [0, \infty )
+\end{equation*}
+
+\subsection{Properties of the join density}
+\begin{itemize}
+\item $ f(x,y) \ge 0, \forall (x,y) \in \mathbb{R}_{X} \times \mathbb{R}_{Y}$ 
+\item $ \int_{ - \infty }^{\infty } \int_{ - \infty }^{\infty }f(x,y)dx dy  = 1 $
+\item $ F_{XY}(a,b) = \int_{ - \infty }^{a}\int_{ - \infty }^{b}f(x,y)dydx   $
+\item In the discrete case:
+\item $ \sum\limits_{i = 1} ^\infty \sum\limits_{j = 1} ^\infty f(x_{i},y_{j}) = 1 $
+\item $ F(x_{k},y_{m}) = \sum\limits_{i = 1} ^k \sum\limits_{j = 1} ^m f(x_{i},y_{j})		 $
+\end{itemize}
 
 
 
