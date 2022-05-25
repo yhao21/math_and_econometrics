@@ -94,6 +94,11 @@ E(aX_1 + bX_2)&= aE(X_1) + bE(X_2)
 \end{align*}
 
 
+\begin{figure}[H]
+\center{\includegraphics[scale = ]  {figures/E_XY.png}}
+\end{figure}
+
+
 
 
 \subsection{Variance}
@@ -108,9 +113,154 @@ Variance measures the dispersion around the mean.
 For {\textbf {independent RVs,}}
 \begin{align*}
 Var(c) &= 0\\
-Var(aX_1 + bX_2)&= a^{2}Var(X_1) + b^{2}Var(X_2)\\
-Var \left( \sum\limits_{i = 1} ^n a_{i}X_{i}	 \right) &= \sum\limits_{i = 1} ^n a_{i}^{2}Var(X_{i})	
+Var(aX_1 + bX_2)&= a^{2}Var(X_1) + b^{2}Var(X_2), \text{ if $ X_1, X_2 $ are independent }\\
+Var \left( \sum\limits_{i = 1} ^n a_{i}X_{i}	 \right) &= \sum\limits_{i = 1} ^n a_{i}^{2}Var(X_{i})	\\
+Var(aX + bY) &= a^{2}Var(X) + b^{2}Var(Y) + 2abCov(X,Y), \text{ if X,Y are not independent. }
 \end{align*}
+
+
+{\textbf {Covariance:}}
+
+\begin{align*}
+		Cov(X,Y) &= E \left\{ \left[ X - E(X) \right] \left[ Y - E(Y) \right]   \right\} \\
+		&= E(XY) - E(X)E(Y)
+\end{align*}
+{\textbf {Properties:}}
+\begin{align*}
+		Cov(a,X) &= 0\\
+		Cov(X,Y) &= Cov(Y,X)\\
+		Cov(aX, bY) &= abCov(X,Y)\\
+		Cov(aX + bY, Z) &= aCov(X, Z) + bCov(Y,Z)\\
+		Cov(X,Y) &= 0, \text{ if X,Y are independent }
+\end{align*}
+
+
+\noindent\fbox{%
+\parbox{\textwidth}{%
+\begin{align*}
+Cov(aX,bY)&= E \left\{ \left[ aX - E(aX) \right]\left[ bY - E(bY) \right]   \right\} \\
+&= E \left\{ aXbY - aXE(bY) - bYE(aX) + E(aX)E(bY) \right\} \\
+&= abE(XY) - abE(X)E(Y)\\
+&= ab \left[ E(XY) - E(X)E(Y) \right] \\
+&= abCov(X,Y)
+\end{align*}
+\begin{align*}
+Cov(X + Y, Z)&= E[(X + Y)Z] - E(X + Y)E(Z)\\
+&= E(XZ + YZ) - E(X)E(Z) - E(Y)E(Z)\\
+&= E(XZ) - E(X)E(Z) + E(YZ) - E(Y)E(Z)\\
+&= Cov(X,Z) + Cov(Y,Z)
+\end{align*}
+}%
+}\\
+
+
+{\textbf {Note:}} You CANNOT directly compare two covariance because Cov is affected
+by the unit of a RV. We need to convert Cov to correlation coefficient.
+
+
+{\textbf {Population vs Sample Variance Covariance:}}
+
+Population:
+\begin{itemize}
+\item Mean:
+		$ E(X) = \frac{1}{n}\sum\limits_{i = 1} ^n X_{i}	 $, 
+		$\quad E(Y) = \frac{1}{n}\sum\limits_{i = 1} ^n Y_{i}	 $
+\item Var:
+		\begin{equation*}
+		Var(X) =\sigma_{X}^{2} =  \frac{\sum\limits_{i = 1} ^n (X_{i} - E(X))^{2}	}{n}, \quad
+    Var(Y) =\sigma_{Y}^{2} =  \frac{\sum\limits_{i = 1} ^n (Y_{i} - E(Y))^{2}	}{n}
+		\end{equation*}
+\item Cov:
+		\begin{equation*}
+				Cov(X,Y) = \frac{E \left\{ [X - E(X)][Y - E(Y)] \right\} }{n}
+				= \frac{\sum\limits_{i = 1} ^n [X_{i} - E(X)][Y_{i} - E(Y)]	}{n}
+		\end{equation*}
+\item Correlation Coefficient:
+		\begin{equation*}
+		\rho_{XY} = \frac{Cov(X,Y)}{\sigma_{X}\sigma_{Y}}
+		\end{equation*}
+\end{itemize}
+
+
+
+Sample:
+\begin{itemize}
+\item Mean:
+\begin{equation*}
+ \overline{X} = \frac{1}{n}\sum\limits_{i = 1} ^n X_{i}, \quad	
+\overline{Y} = \frac{1}{n}\sum\limits_{i = 1} ^n Y_{i}
+\end{equation*}
+
+\item Var:
+		\begin{equation*}
+		Var(X) =s_{X}^{2} =  \frac{\sum\limits_{i = 1} ^n (X_{i} -  \overline{X})^{2}	}{n - 1}, \quad
+    Var(Y) =s_{Y}^{2} =  \frac{\sum\limits_{i = 1} ^n (Y_{i} -  \overline{Y})^{2}	}{n - 1}
+		\end{equation*}
+\item Cov:
+		\begin{equation*}
+				Cov(X,Y) = \frac{E \left\{ [X -  \overline{X}][Y -  \overline{Y}] \right\} }{n - 1}
+				= \frac{\sum\limits_{i = 1} ^n [X_{i} -  \overline{X}][Y_{i} -  \overline{Y}]	}{n - 1}
+		\end{equation*}
+\item Correlation Coefficient:
+		\begin{equation*}
+		\rho_{XY} = \frac{Cov(X,Y)}{s_{X}s_{Y}}
+		\end{equation*}
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+{\textbf {Correlation Coefficient:}}
+\begin{align*}
+		\rho_{XY} &= \frac{Cov(X,Y)}{(Var(X)Var(Y))^{\frac{1}{2}}} = 
+		\frac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}} \\
+		&= \frac{E \left\{ [X - E(X)][Y - E(Y)] \right\}}{\sigma_{X}\sigma_{Y}} \\
+		&= E \left\{ \frac{X - E(X)}{\sigma_{X}} \frac{Y - E(Y)}{\sigma_{Y}} \right\} \\
+		&= E \left\{ \frac{X - \mu_{X}}{\sigma_{X}} \frac{Y - \mu_{Y}}{\sigma_{Y}} \right\} 
+\end{align*}
+The units have been standardized.
+
+It measures the linear correlation between RV X and Y.
+
+If X and Y have a {\textbf {linear relationship for sure}}, in another word
+\begin{equation*}
+Prob(Y = aX + b) = 1,
+\end{equation*}
+then 
+\begin{equation*}
+\left\lvert \rho_{XY} \right\rvert  = 1
+\end{equation*}
+If $ a > 0 , \rho_{XY} = 1$\\
+If $ a < 0 , \rho_{XY} = -1$\\
+
+{\textbf {Note:}} Cov = 0 only means RVs are not linear correlated, it does not mean
+that they are independent. They can have nonlinear relationship.
+However, if RVs are independent, then Cov must be zero.
+
+{\textbf {However, if $ X,Y $ are normally distributed, and Cov(X,Y) = 0, then they
+must be independent, the reverse is also correct.}}
+
+
+
+
+\begin{figure}[H]
+\center{\includegraphics[scale =.5 ]  {figures/interpretation_Pearson_corr.png}}
+\end{figure}
+
+
+
+
+
+
+
+
+
 
 
 \subsubsection{Chebyshev's inequality}
