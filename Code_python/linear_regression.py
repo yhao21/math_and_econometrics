@@ -27,16 +27,18 @@ class LinearRegression():
     def get_statistics(self):
         self.y_hat = self.x.dot(self.beta)
         self.ee = np.sum((self.y - self.y_hat)**2)
-        self.sigma2 = self.ee/(self.x.shape[0] - self.x.shape[1])
-        variance = self.sigma2 * np.linalg.inv((self.x.T).dot(self.x))
+        # s2 = sigma2_hat = ee/(n-k), here sigma2_hat is the estimate of sigma2, since we cannot observe sigma2
+        #### Var(e) = sigma2 = ee/
+        self.sigma2_hat = self.ee/(self.x.shape[0] - self.x.shape[1])       
+        variance = self.sigma2_hat * np.linalg.inv((self.x.T).dot(self.x))
         self.std_err_matrix = np.sqrt(variance)
         # it is the values on the diagonal. 
         self.std_err = np.diag(self.std_err_matrix)
         self.beta_t_value = self.beta/self.std_err
         
-        print(self.std_err_matrix)
-        print(self.std_err)
-        print(self.beta_t_value)
+        #print(self.std_err_matrix)
+        #print(self.std_err)
+        #print(self.beta_t_value)
 
 
     def OLS(self):

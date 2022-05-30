@@ -342,6 +342,207 @@ The OLS estimator $  \widehat{\bm{\beta}} $ :
  = (\bm{X}^{T}\cdot \bm{X})^{ - 1}\cdot \bm{X}^{T}\cdot \bm{Y}
 \end{equation*}
 
+\noindent\fbox{%
+\parbox{\textwidth}{%
+Derivation:
+\begin{align*}
+\min \bm{e}'\bm{e} &= \min \bm{(y - X   \widehat{\beta})'(y - X   \widehat{\beta})}\\
+&= \bm{y'y - y'X  \widehat{\beta} -  \widehat{\beta}' X'y +  \widehat{\beta}'X'X 
+ \widehat{\beta} }
+\end{align*}
+Note, $ \bm{ y'X  \widehat{\beta}} $, and $ \bm{ \widehat{\beta}' X'y} $ are scaler.
+So the transpose of $ \bm{ y'X  \widehat{\beta}} $ is itself.
+Remember the derivative of matrix: $ \frac{\partial \bm{x}'b }{\partial \bm{x} }
+= b$
+
+\begin{align*}
+\frac{\partial \bm{e'e} }{\partial  \bm{\widehat{\beta}} }&= 0  
+ - \frac{\partial (\bm{ \widehat{\beta}'X'y })' }{\partial \bm{ \widehat{\beta} } }
+  - \bm{X'y} + 2 \bm{X'X  \widehat{\beta}} = 0\\
+&= - \frac{\partial (\bm{ \widehat{\beta}'X'y }) }{\partial \bm{ \widehat{\beta} } }
+  - \bm{X'y} + 2 \bm{X'X  \widehat{\beta}} = 0\\
+&=  - \bm{X'y} - \bm{X'y} + 2\bm{X'X  \widehat{\beta}} = 0\\
+2 \bm{X'X  \widehat{\beta}} &= 2 \bm{X'y}\\
+\bm{ \widehat{\beta}}&= \bm{(X'X)^{ - 1}X'y}
+\end{align*}
+}%
+}\\
+
+
+
+\subsection{F-test}
+For a regression below:
+\begin{equation*}
+y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_{k}x_{k} + \varepsilon
+\end{equation*}
+we usually want to know the significance of the regression equation, i.e., whether
+all $ \beta $s equal to zero.
+So we need to do a  $ F $-test with null below:
+\begin{equation*}
+H_0: \beta_1 = ... = \beta_{k} = 0
+\end{equation*}
+This null hypothesis can be written in this way:
+\begin{equation*}
+H_0: \beta_1 = 0, \beta_2 = 0, ... \beta_{k} = 0
+\end{equation*}
+
+Write this into vector form:
+\begin{equation*}
+H_0:
+\begin{pmatrix}
+		1 & 0 & 0\\
+		0 & 1 & 0\\
+		0 & 0 & 1\\
+\end{pmatrix}
+\begin{pmatrix}
+\beta_1\\
+\beta_2\\
+\beta_3\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\
+0\\
+0\\
+\end{pmatrix}
+\end{equation*}
+Let 
+\begin{equation*}
+\bm{R}= 
+\begin{pmatrix}
+		1 & 0 & 0 & \cdots &0\\
+		0 & 1 & 0 & \cdots &0\\
+		0 & 0 & 1 & \cdots &0\\
+		\cdots&\cdots&\cdots&\cdots &\cdots\\
+		0 & 0 & 0 & \cdots &1\\
+\end{pmatrix},
+\bm{\beta}= 
+\begin{pmatrix}
+\beta_1\\
+\beta_2\\
+\beta_3\\
+\cdots\\
+\beta_{k}
+\end{pmatrix}
+\bm{r}= 
+\begin{pmatrix}
+0\\
+0\\
+0\\
+\cdots\\
+0
+\end{pmatrix}
+\end{equation*}
+
+$ \bm{R}: K  \times K, \quad \bm{\beta}: K  \times 1, \quad \bm{r}: m  \times 1$ 
+In this case m = K
+
+So, the null can be written in this way,
+\begin{equation*}
+H_0: \bm{R} \bm{\beta} - \bm{r} = 0
+\end{equation*}
+We can use quadratic form representing the distance between it and 0 and do the Wald
+test
+\begin{equation*}
+		\frac{(\bm{R} \bm{\beta - r}  - 0)^{2}}{Var(\bm{R \beta - r})} = 
+		(\bm{R  \widehat{\beta} - r})'[Var(\bm{R  \widehat{\beta} - r})]^{ - 1}
+		(\bm{R  \widehat{\beta} - r})'
+\end{equation*}
+Form the $ F $ statistics:
+\begin{equation*}
+F = \frac{
+		[(\bm{R  \widehat{\beta} - r})'[Var(\bm{R  \widehat{\beta} - r})]^{ - 1}
+		(\bm{R  \widehat{\beta} - r})']/m
+}{s^{2}} \sim F(m,n - K)
+\end{equation*}
+
+
+Note, 
+\begin{align*}
+		Var(\bm{R  \widehat{\beta} - r})&= Var(\bm{R  \widehat{\beta}})\\
+		&= \bm{R}Var( \widehat{\beta})\bm{R}'\\
+		&= \sigma^{2}\bm{R}(\bm{X'X})^{ - 1}\bm{R}'
+\end{align*}
+We use $ s^{2} $ to estimate $ \sigma^{2} $.
+
+If $ F $ is very large, p value would be small. If p value is smaller than $ \alpha $,
+reject the null.
+
+{\textbf {We can also use $ F $-test to test if two estimators are equal.}}\\
+
+Example:
+
+For model: $ y = \beta_1 + \beta_2x_2 + \beta_3x_3 + \beta_4x_4 + \varepsilon $,
+if you want to test:
+\begin{equation*}
+H_0: \beta_2 = \beta_3, \beta_4 = 0
+\end{equation*}
+it can be written as
+\begin{equation*}
+H_0: \beta_2 - \beta_3 = 0, \quad \beta_4 = 0
+\end{equation*}
+\begin{equation*}
+H_0:
+\begin{pmatrix}
+\beta_2 - \beta_3\\
+\beta_4
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\
+0
+\end{pmatrix}
+\end{equation*}
+\begin{equation*}
+H_0:
+\begin{pmatrix}
+0 & 1 &  -1 & 0\\
+0 & 0 &  0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+\beta_1\\
+\beta_2\\
+\beta_3\\
+\beta_4\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\
+0
+\end{pmatrix}
+\end{equation*}
+\begin{equation*}
+\bm{R} = 
+\begin{pmatrix}
+0 & 1 &  -1 & 0\\
+0 & 0 &  0 & 1
+\end{pmatrix}
+, \quad
+\bm{\beta} = 
+\begin{pmatrix}
+\beta_1\\
+\beta_2\\
+\beta_3\\
+\beta_4\\
+\end{pmatrix}
+, \quad
+\bm{r} = 
+\begin{pmatrix}
+0\\
+0
+\end{pmatrix}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
 
 
 \subsection{Interpretation of the coef}
