@@ -1,0 +1,319 @@
+
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newtheorem{thm}{Theorem}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{float}
+\usepackage[sort,comma]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+
+
+
+\title{Matrix Calculus}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+
+\section{Matrix transpose}
+
+\begin{itemize}
+\item 
+For matrix $ \bm{A} $ and $ \bm{B} $, and a scalar $ c $,
+\begin{align*}
+(\bm{A}')' &= \bm{A}\\
+(\bm{A} + \bm{B})' &= \bm{A}' + \bm{B}'\\
+(c\bm{A})' &= c\bm{A}'\\
+(\bm{A}\bm{B})'&= \bm{B}'\bm{A}'
+\end{align*}
+\item 
+Given matrices $ \bm{A}_{1}, \bm{A}_{2},..., \bm{A}_{n} $, 
+\begin{equation}
+(\bm{A}_{1}\bm{A}_{2}\cdots \bm{A}_{n})' = \bm{A}_{n}'\bm{A}_{n - 1}'\cdots \bm{A}_{1}'
+\end{equation}
+
+\item 
+		\begin{equation}
+		det(\bm{A}') = det(\bm{A})
+		\end{equation}
+\item 
+		\begin{equation}
+		(\bm{A}')^{ - 1} = (\bm{A}^{ - 1})'
+		\end{equation}
+
+
+\end{itemize}
+
+
+\section{Derivatives of the trace of a matrix}
+\subsection{Matrix and index notation}
+Given the product of matrix $ \bm{A} $ and $ \bm{B} $ is
+a $ i  \times k $ matrix, $ [ \bm{AB}]_{ik} $,
+we can write it in the index form as below,
+\begin{equation}
+		[\bm{AB}]_{ik} = \sum\limits_{j}A_{ij}B_{jk}.
+\end{equation}
+And the matrix product $ \bm{ABC}' $ can be written as
+\begin{equation}
+[\bm{ABC}']_{il} = \sum\limits_{j}A_{ij}[\bm{BC}']_{jl}
+=\sum\limits_{j}A_{ij} \sum\limits_{k}B_{jk}C_{kl}'
+=\sum\limits_{j}A_{ij} \sum\limits_{k}B_{jk}C_{lk}
+=\sum\limits_{j} \sum\limits_{k}A_{ij}B_{jk}C_{lk}
+\end{equation}
+
+
+\subsection{First-order derivatives of the trace}
+The trace of a matrix, $ tr(\cdot ) $, is the summation
+of elements on the main diagonal of a square matrix,
+i.e., it must be a $ n  \times  n $ matrix.
+
+
+{\textbf {Example 1}}
+
+Consider this example:
+\begin{equation}
+		f = tr[\bm{AXB}],
+\end{equation}
+we can write this using index notation as below,
+\begin{align*}
+		f &= \sum\limits_{i} [\bm{AXB}]_{ii} \\
+			&= \sum\limits_{i} \sum\limits_{j} A_{ij}[\bm{XB}]
+			_{ji}\\
+			&= \sum\limits_{i} \sum\limits_{j} A_{ij}
+			\sum\limits_{k} X_{jk}B_{ki}\\
+			&= \sum\limits_{i} \sum\limits_{j} \sum\limits_{k}
+			A_{ij}X_{jk}B_{ki}.
+\end{align*}
+
+
+Taking the derivative w.r.t. $ X_{jk} $, we get
+\begin{align}
+		\frac{\partial tr[AXB] }{\partial X_{jk} } &= 
+\sum\limits_{i} A_{ij}B_{ki} \label{eqn: Kjk}\\
+&= \sum\limits_{i} B_{ki}A_{ij} \label{eqn:BA}\\
+&= [\bm{BA}]_{kj}, \text{ it is a $ k  \times j $ matrix }
+\end{align}
+
+The summation of $ j $ and $ k $ disappears in equation \eqref{eqn: Kjk} becase
+we are differenciating the trace w.r.t. $ X_{jk} $. We switch the position in 
+equation \eqref{eqn:BA} following $ k  \times  i $ times $ i  \times j $ rule.
+
+
+
+
+
+The result has to be the same size as $ \bm{X} $, 
+i.e., a $ j  \times  k $ matrix (We differentiate the
+trace w.r.t. $ X_{jk} $ in equation \eqref{eqn: Kjk}). Hence we have to transpose the result. Theresore,
+\begin{equation}
+		\frac{\partial tr[\bm{AXB}] }{\partial \bm{X} }
+		=\bm{A}'\bm{B}' \label{eqn:axb}
+\end{equation}
+
+
+
+{\textbf {Example 2}}
+Given  matrix $ [\bm{AX}'\bm{B}]_{ii} $, the trace of it is
+\begin{align*}
+		tr[\bm{AX}'\bm{B}] &= \sum\limits_{i}\sum\limits_{j}
+		A_{ij}[\bm{X'}\bm{B}]_{ji}\\
+		&= \sum\limits_{i}\sum\limits_{j}A_{ij}
+		\sum\limits_{k} X_{jk}'B_{ki}\\
+		&= \sum\limits_{i}\sum\limits_{j}A_{ij}
+		\sum\limits_{k} X_{kj}B_{ki}\\
+		&= \sum\limits_{i}\sum\limits_{j}\sum\limits_{k}A_{ij}
+		 X_{kj}B_{ki}.
+\end{align*}
+
+Differentiate $ tr[\bm{AX}'\bm{B}] $ w.r.t. $ X_{kj} $,
+\begin{align*}
+\frac{\partial tr[\bm{AX}'\bm{B}] }{\partial X_{kj} }
+&= \sum\limits_{i} A_{ij}B_{ki}\\
+&= \sum\limits_{i} B_{ki}A_{ij}\\
+&= [\bm{BA}]kj
+\end{align*}
+Since $ [\bm{BA}]_{kj} $ and $ \bm{X} $ already have the same size, i.e., $ k  \times j $, we do not need to transpose the matrix. Therefore,
+\begin{equation}
+		\frac{\partial tr[\bm{AX}'\bm{B}] }{\partial \bm{X} } = \bm{BA} \label{eqn:AX'B}
+\end{equation}
+
+
+
+\subsection{Multiple-order}
+Now consider the trace of a matrix with two $ \bm{X} $,
+\begin{align}
+		f &= tr[\bm{AXBXC}']\\
+		&= \sum\limits_{i}\sum\limits_{j}\sum\limits_{k}\sum\limits_{l}\sum\limits_{m}
+		A_{ij}X_{jk}B_{kl}X_{lm}C_{im}.
+\end{align}
+Since we have two terms related to $ \bm{X} $, we need to differentiate the trace
+w.r.t. both of them, i.e., 
+\begin{equation*}
+\frac{\partial f }{\partial \bm{X} } = \frac{\partial f }{\partial X_{jk} }
+ + \frac{\partial f }{\partial X_{lm} }.
+\end{equation*}
+
+
+Differentiate $ f $ w.r.t. $ X_{jk} $,
+\begin{align}
+\frac{\partial f }{\partial X_{jk} }&= \sum\limits_{i}\sum\limits_{l}\sum\limits_{m}
+A_{ij}B_{kl}X_{lm}C_{im}\\
+&= \sum\limits_{i}\sum\limits_{l}\sum\limits_{m}A_{ij}B_{kl}X_{lm}C_{mi}'		\\
+&= \sum\limits_{i}\sum\limits_{l}A_{ij}B_{kl}[\bm{XC}']_{li}		\\
+&= \sum\limits_{i}A_{ij}[\bm{BXC}']_{ki}		\\
+&= \sum\limits_{i}[\bm{BXC}']_{ki}A_{ij}		\\
+&= [\bm{BXC}'\bm{A}]_{kj}\\
+\frac{\partial f }{\partial X_{jk} }&= \bm{A}'\bm{C}\bm{X}'\bm{B}'
+\end{align}
+
+Differentiate $ f $ w.r.t. $ X_{lm} $,
+\begin{align}
+\frac{\partial f }{\partial X_{lm} }
+&=\sum\limits_{i}\sum\limits_{j}\sum\limits_{k}A_{ij}X_{jk}B_{kl}C_{im}\\
+&=\sum\limits_{i}\sum\limits_{j}A_{ij}[\bm{XB}]_{jl}C_{im}\\
+&=\sum\limits_{i}[\bm{AXB}]_{il}C_{im}\\
+&=\sum\limits_{i}[\bm{AXB}]_{il}C_{mi}'\\
+&=\sum\limits_{i}C_{mi}'[\bm{AXB}]_{il}\\
+&=[\bm{C}'\bm{AXB}]_{ml}\\
+\frac{\partial f }{\partial X_{lm} }&= \bm{B}'\bm{X}'\bm{A}'\bm{C}
+\end{align}
+
+
+Hence,
+\begin{equation}
+		\frac{\partial tr[\bm{AXBXC}'] }{\partial \bm{X} } = \bm{A}'\bm{C}\bm{X}'\bm{B}'
+		 + \bm{B}'\bm{X}'\bm{A}'\bm{C}.
+\end{equation}
+
+
+{\textbf {Notice}}, we can do it in an easier way.
+First, we decomposite $ \bm{AXBXC}' $ into two parts regarding the position of two 
+$ \bm{X} $, i,e., $ \bm{AXD} $ and $ \bm{EXC}' $, where $ \bm{D} =\bm{BXC}' $,
+$ \bm{E} = \bm{AXB} $.
+Thus,
+\begin{equation*}
+		\frac{\partial tr[\bm{AXBXC}'] }{\partial \bm{X} } = 
+		\frac{\partial tr[\bm{AXD}] }{\partial \bm{X} } +
+		\frac{\partial tr[\bm{EXC}'] }{\partial \bm{X} }.
+\end{equation*}
+
+Apply the result we got from equation \eqref{eqn:axb}, i.e., 
+$ \frac{\partial tr[\bm{AXB}] }{\partial \bm{X} }=\bm{A}'\bm{B}' $
+
+\begin{align*}
+		\frac{\partial tr[\bm{AXBXC}'] }{\partial \bm{X} } &=
+		\frac{\partial tr[\bm{AXD}] }{\partial \bm{X} } +
+		\frac{\partial tr[\bm{EXC}'] }{\partial \bm{X} }\\
+		&= \bm{A}'\bm{D}' + \bm{E}'\bm{C}\\
+		&= \bm{A}'\bm{C}\bm{X}'\bm{B}' + \bm{B}'\bm{X}'\bm{A}'\bm{C}
+\end{align*}
+
+where 
+\begin{align*}
+\bm{D} &= \bm{BXC}'\\
+\bm{E} &= \bm{AXB}
+\end{align*}
+
+
+{\textbf {One more example:}}
+
+Now consider this even more complicated one,
+\begin{equation*}
+		f = tr[\bm{AX}\bm{X}'\bm{BCX}'\bm{XC}].
+\end{equation*}
+First, we decomposite it into four parts because there are four terms related to
+$ \bm{X} $s,
+\begin{align*}
+&\bm{AXD}\\
+&\bm{E}\bm{X'}\bm{F}\\
+&\bm{GX}'\bm{H}\\
+&\bm{IXC},
+\end{align*}
+where
+\begin{align*}
+\bm{D} &=  \bm{X}'\bm{BCX}'\bm{XC}  \\
+\bm{E} &=  \bm{AX} \\
+\bm{F} &=  \bm{BCX}'\bm{XC}  \\
+\bm{G} &=  \bm{AX}\bm{X}'\bm{BC}  \\
+\bm{H} &=  \bm{XC}  \\
+\bm{I} &=  \bm{AX}\bm{X}'\bm{BCX}'  \\
+\end{align*}
+
+Then we write down the derivatives
+\begin{align*}
+\frac{\partial tr[\bm{AX}\bm{X}'\bm{BCX}'\bm{XC}] }{\partial \bm{X} }
+&= \frac{\partial tr[\bm{AXD}] }{\partial \bm{X} }
++\frac{\partial \bm{E}\bm{X'}\bm{F} }{\partial \bm{X} }
++\frac{\partial \bm{GX}'\bm{H} }{\partial \bm{X} }
++\frac{\partial \bm{IXC} }{\partial \bm{X} }.
+\end{align*}
+
+Apply the results from equation \eqref{eqn:axb} and equation \eqref{eqn:AX'B},
+i.e., $ \frac{\partial tr[\bm{AXB}] }{\partial \bm{X} }=\bm{A}'\bm{B}' $ and
+$ \frac{\partial tr[\bm{AX}'\bm{B}] }{\partial \bm{X} } = \bm{BA} \label{eqn:AX'B} $
+
+\begin{align*}
+\frac{\partial tr[\bm{AX}\bm{X}'\bm{BCX}'\bm{XC}] }{\partial \bm{X} }
+&= \frac{\partial tr[\bm{AXD}] }{\partial \bm{X} }
++\frac{\partial \bm{E}\bm{X'}\bm{F} }{\partial \bm{X} }
++\frac{\partial \bm{GX}'\bm{H} }{\partial \bm{X} }
++\frac{\partial \bm{IXC} }{\partial \bm{X} }\\
+&= \bm{A}'\bm{D}' + \bm{FE} + \bm{HG} + \bm{I}'\bm{C}'\\
+&= \bm{A}'\bm{C}'\bm{X}'\bm{X}\bm{C}'\bm{B}'\bm{X} + \bm{BCX}'\bm{XCAX}
+ + \bm{XCAX}\bm{X}'\bm{BC} + \bm{X}\bm{C}'\bm{B}'\bm{X}\bm{X}'\bm{A}'\bm{C}'
+\end{align*}
+
+
+
+		 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{my_bib}
+
+\end{document}
+
