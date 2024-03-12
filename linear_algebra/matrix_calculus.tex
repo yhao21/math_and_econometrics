@@ -75,6 +75,172 @@ Given matrices $ \bm{A}_{1}, \bm{A}_{2},..., \bm{A}_{n} $,
 \end{itemize}
 
 
+
+
+
+
+\section{Matrix multiplication}
+
+Given matrices $ \bm{x} $ and $ \bm{A} $,
+\begin{equation*}
+\bm{x} = 
+\begin{bmatrix}
+		x_{11} & x_{12}\\
+		x_{21} & x_{22}\\
+		x_{31} & x_{32}
+\end{bmatrix}
+,
+\bm{A} = 
+\begin{bmatrix}
+		a_{11} & a_{12}\\
+		a_{21} & a_{22}\\
+		a_{31} & a_{32}
+\end{bmatrix}
+\end{equation*}
+where $ \bm{x} \in {\rm I\!{R}}^{3  \times 2}, \bm{A} \in {\rm I\!{R}}^{3  \times 2} $.
+Let $ \bm{z} = \bm{x}' \bm{A} $,
+\begin{align*}
+\bm{z} &= 
+\begin{bmatrix}
+		x_{11} & x_{21} & x_{31}\\
+		x_{12} & x_{22} & x_{32}
+\end{bmatrix}
+\begin{bmatrix}
+		a_{11} & a_{12}\\
+		a_{21} & a_{22}\\
+		a_{31} & a_{32}
+\end{bmatrix}
+\\
+\begin{bmatrix}
+		z_{11} & z_{12}\\
+		z_{21} & z_{22}\\
+\end{bmatrix}
+&= 
+\begin{bmatrix}
+a_{11}x_{11} + a_{21}x_{21} + a_{31}x_{31} & a_{12}x_{11} + a_{22}x_{21} + a_{32}x_{31}\\
+a_{11}x_{12} + a_{21}x_{22} + a_{31}x_{32} & a_{12}x_{12} + a_{22}x_{22} + a_{32}x_{32}
+\end{bmatrix}
+.
+\end{align*}
+
+For element $ z_{ij} $ in matrix $ \bm{z} $,
+\begin{align*}
+z_{ij} = \sum\limits_{k = 1} ^ 3 x_{ik}' a_{kj} = \sum\limits_{k = 1} ^3 x_{ki}a_{kj},
+\end{align*}
+where $ x_{ik} $ is the element on the $ i $th row and $ k $th column in matrix 
+$ \bm{x} $, $ a_{kj} $ is the element on the $ k $th row and $ j $th column in matrix
+$ \bm{A} $.
+
+We can write it in a more general form. Given matrices $ \bm{x} $ and $ \bm{A} $,
+where $ \bm{x} \in {\rm I\!{R}}^{m  \times  l} $ and
+$ \bm{A} \in {\rm I\!{R}}^{m  \times n} $, then
+\begin{equation*}
+		\bm{z} = \bm{x}'\bm{A}
+\end{equation*}
+is a $ l  \times n $ matrix.
+For an element in $ \bm{z} $,
+\begin{equation*}
+z_{ij} = \sum\limits_{k = 1} ^	m x_{ik}'a_{kj} = \sum\limits_{k = 1} ^m	x_{ki}a_{kj}.
+\end{equation*}
+
+
+
+
+\section{Derivatives of a matrix}
+Let 
+\begin{equation*}
+\bm{z} = \bm{x}'\bm{Ax},
+\end{equation*}
+where $ \bm{x} \in {\rm I\!{R}}^{n  \times 1}, \bm{A} \in {\rm I\!{R}}^{n  \times n},
+\bm{z} \in {\rm I\!{R}}^{1  \times 1}$.
+We have
+\begin{align*}
+		z_{11} = \sum\limits_{j = 1} ^n x_{1j}'[\bm{Ax}]_{j1}
+		=\sum\limits_{j = 1} ^n x_{1j}'\sum\limits_{k = 1} ^n a_{jk}x_{k1}	
+		=\sum\limits_{j = 1} ^n \sum\limits_{k = 1} ^n x_{j 1}a_{jk}x_{k 1}		.
+\end{align*}
+
+{\textbf {Example 1:}}
+
+Given vector $ \bm{a}, \bm{b} $, and a matrix $ \bm{X} $, where
+$ \bm{a} \in {\rm I\!{R}}^{n  \times 1}, \bm{b} \in {\rm I\!{R}}^{m  \times 1}, 
+\bm{X} \in {\rm I\!{R}}^{n  \times m}$.
+Let 
+\begin{equation*}
+\bm{z} = \bm{aXb}.
+\end{equation*}
+Then for the element in $ \bm{z} $,
+\begin{align*}
+		z_{11} = \sum\limits_{j = 1} ^n a_{1j}[\bm{Xb}]_{j1}
+		=\sum\limits_{j = 1} ^n a_{1j}\sum\limits_{k = 1} ^	m x_{jk} b_{k 1}
+		=\sum\limits_{j = 1} ^n \sum\limits_{k = 1} ^m a_{1 j}x_{jk}b_{k 1}		
+\end{align*}
+The derivative of $ \bm{z} $ w.r.t. $ x_{jk} $ is
+\begin{align*}
+		\frac{\partial \bm{z} }{\partial x_{jk} } = a_{1j}b_{k 1} = b_{k 1}a_{1j} = 
+		[\bm{ba}]_{kj}
+\end{align*}
+It has to be the same size as $ \bm{X} $, i.e., a $ j  \times k $ matrix,
+\begin{equation}
+\frac{\partial \bm{aXb} }{\partial \bm{X} }=\bm{a}'\bm{b}' \label{eqn:AXB}
+\end{equation}
+
+
+{\textbf {Example 2:}}
+
+Given $ \bm{a}\in {\rm I\!{R}}^{1  \times m}, \bm{X} \in {\rm I\!{R}}^{n  \times m},
+\bm{b} \in {\rm I\!{R}}^{n  \times 1}$,
+\begin{equation*}
+\bm{z} = \bm{aX}'\bm{b}.
+\end{equation*}
+For the element in $ \bm{z} $,
+\begin{equation*}
+z_{11} = \sum\limits_{j = 1} ^m a_{1j} \sum\limits_{k = 1} ^n x_{jk}'b_{k 1}
+=\sum\limits_{j = 1} ^m \sum\limits_{k = 1} ^n	a_{1j}x_{kj}b_{k  1}.
+\end{equation*}
+Differentiate $ \bm{z} $ w.r.t. $ x_{kj} $,
+\begin{equation*}
+		\frac{\partial \bm{z} }{\partial x_{kj} }=a_{1j}b_{k1} = b_{k 1}a_{1j}=[\bm{ba}]_{kj}
+\end{equation*}
+,
+thus
+\begin{equation}
+\frac{\partial \bm{aX}'\bm{b} }{\partial \bm{X} } = \bm{ba} \label{eqn:ax'b}
+\end{equation}
+
+
+
+{\textbf {Example 3:}}
+
+Now let's consider a more complicated example,
+\begin{equation*}
+\bm{z} = \bm{x}'\bm{Ax}.
+\end{equation*}
+We can decompose it into two parts $ \bm{Ix}'\bm{E} $ and $ \bm{FxI} $,
+where $ \bm{E} = \bm{Ax}, \bm{F} = \bm{x}'\bm{A} $, i.e., 
+\begin{align*}
+\frac{\partial \bm{z} }{\partial \bm{x} } &=  
+\frac{\partial \bm{Ix}'\bm{E} }{\partial \bm{x} } + \frac{\partial \bm{FxI} }{\partial \bm{x} }.
+\end{align*}
+Then apply equation \eqref{eqn:AXB} to the second term and 
+equation \eqref{eqn:ax'b} to the first term,
+
+\begin{align*}
+\frac{\partial \bm{z} }{\partial \bm{x} } &=  
+\frac{\partial \bm{Ix}'\bm{E} }{\partial \bm{x} } + \frac{\partial \bm{FxI} }{\partial \bm{x} }.\\
+&= \bm{E} + \bm{F}'\\
+&= \bm{Ax} + \bm{A}'\bm{x}\\
+&= (\bm{A} + \bm{A}')\bm{x}
+\end{align*}
+
+
+
+
+
+
+
+
+
 \section{Derivatives of the trace of a matrix}
 \subsection{Matrix and index notation}
 Given the product of matrix $ \bm{A} $ and $ \bm{B} $ is

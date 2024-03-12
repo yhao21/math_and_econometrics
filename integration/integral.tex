@@ -1,0 +1,117 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newtheorem{thm}{Theorem}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[sort,comma]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+
+
+
+\title{}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+\section{$ \int_{}^{} xe^{x}dx $}
+
+
+To solve this, we need this
+\begin{equation*}
+\int_{}^{} udv = uv - \int_{}^{} v du
+\end{equation*}
+Let $ u = x $, then $ dv = e^{x}dx $. We can also know $ du = dx $.
+
+What is $ v $?
+\begin{align*}
+v &= \int_{}^{} dv = \int_{}^{} e^{x}dx\\
+&= e^{x}
+\end{align*}
+
+Now we can solve this question:
+\begin{align*}
+\int_{}^{} xe^{x}dx &= \int_{}^{} u dv = uv - \int_{}^{} vdu\\
+&= xe^{x} - \int_{}^{} e^{x}dx\\
+&= xe^{x} - e^{x} + c
+\end{align*}
+
+
+
+
+{\textbf {Solve the mean of the exponential distribution}}\\
+Give the density of the exponential distribution:
+\begin{equation*}
+f(x;\lambda) = \lambda e^{ - \lambda x}, \lambda \in \mathbb{R}_{+}, x \in \mathbb{R}
+_{+}
+\end{equation*}
+\begin{align*}
+E(x)&= \int_{0}^{\infty } x \lambda e^{ - \lambda x}dx\\
+&= \lambda \int_{0}^{\infty } x e^{ - \lambda x}dx\\
+u = x &, dv =  e^{ - \lambda x}dx\\
+v&= \int_{}^{} dv = \int_{}^{}  e^{ - \lambda x}dx =  - \frac{1}{\lambda}e^{ - \lambda
+x}\\
+E(x) = \lambda \int_{0}^{\infty } xe^{ - \lambda x}dx
+&= \lambda \left[ uv \Bigg|^{\infty }_{0} - \int_{0}^{\infty }vdu  \right] \\
+&= \lambda \left[  - \frac{x}{\lambda}e^{ - \lambda x} \Bigg|^{\infty }_{0}
+ - \int_{0}^{\infty } - \frac{1}{\lambda}e^{ - \lambda x} dx \right] \\
+&= \lambda \left[ 0 + \frac{1}{\lambda} 
+\left(  - \frac{1}{\lambda} e^{ - \lambda x} \right) \Bigg|^{\infty }_{0} \right] \\
+&= 0 - ( - \frac{1}{\lambda})\\
+E(x)&= \frac{1}{\lambda}
+\end{align*}
+
+
+
+
+
+\section{Taylor Exansion}
+\begin{align*}
+f(x)&= \sum\limits_{n = 0} ^\infty \frac{f^{(n)}(a)(x - a)^{n}}{n!}\\
+&= \frac{f(a)\cdot 1}{1} + f'(a)(x - a) + \frac{1}{2}f''(a)(x - a)^{2} + ...
+\end{align*}
+where
+\begin{equation*}
+f^{(0)}(a) = f(a), \quad 0! = 1
+\end{equation*}
+
+
+
+
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{my_bib}
+
+\end{document}
+
