@@ -1,0 +1,89 @@
+
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newtheorem{thm}{Theorem}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{float}
+\usepackage[sort,comma]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+
+
+
+\title{}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+Section 3.2 gives an introduction about detail models and model parametrization.
+
+\section{Intro}
+
+There are basically two approaches to the problem of building a mathematical model
+of a given system.
+One, based on the physical laws and relationships that (are supposed to) govern the
+system's behavior, a mathematical model can be constructed. This procedure is
+called {\textbf {modeling}}. Modeling can be quite time-consuming and may lead to models
+that are unnecessarily complex.
+
+Two, signals produced by the  system can be measured and be used to construct a model.
+We call it {\textbf {identification}}.
+Identification could mean that a batch of data is collected from the system, and that
+subsequently, this batch of data is used to construct a model. Such a procedure is 
+usually called {\textbf {off-line identification}} or {\textbf {batch identification}}
+(You feed all data into the model and get an estimate).
+
+
+We use the {\textbf {recursive identification}} for a procedure which is to infer the
+model at the same time as the data is collected. The model is then updated at each time
+instant some new data becomes available (Synonymous terms are on-line identification,
+real-time identification, adaptive algorithm, and sequential estimation).
+
+
+
+
+\subsection{Shortcomings of recursive identification}
+\begin{itemize}
+\item The decision of what model structure to use has to be made a priori.
+\item Recursive methods do not give as good accuracy of the models as off-line methods.
+		For long data records, the difference need not be significant.
+\end{itemize}
+
+
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{my_bib}
+
+\end{document}
+
