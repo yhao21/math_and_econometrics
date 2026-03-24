@@ -1,0 +1,148 @@
+
+%\documentclass[./main.tex(path of main file)]{subfiles}
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newtheorem{thm}{Theorem}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{float}
+\usepackage[sort,comma]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{subfiles}
+\usepackage{blindtext}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+
+
+
+\title{}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+\section{Inference about partial effect}
+When there is a conflict between the t-ratio for coef of variable x
+and one for average partial effect (APE) of variable x, trust the
+one for the former (t-ratio for coef of x), not APE.
+The implication runs in the direction from the structure (coef) to
+the partial effects, not the reverse.
+The use of the standard error for the partial effect is, perhaps,
+not for hypothesis test, but for developing confidence intervals.
+This is introduced in Green's book on page 754 (Example 17.9 
+Hypothesis Tests About Partial Effects).
+
+Even though we prefer to use Average Partial Effect (APE), however, 
+APE is slightly different from Partial Effect at the mean (PEA).
+Hence, it is okay to use PEA when the dataset is larger, as it
+requires large computational power.
+
+Note, the single estimate of the APE might not capture the 
+interesting variation in the partial effect as other variables
+change. We need to plot the APE for variable x as it varies
+with another variable y. Add the confidence interval for 
+the APE of x. For example, I can plot the APE for LFE component 
+(tau) as it varies with inflation expectation (PX1).
+
+
+
+Note, the marginal effect is no longer for a 1 unit change even though most people would
+interpret it that way when using marginal effects. It is the derivative!!! It reflects
+the change in probability given a very small change in the variable of interest (In stata, the
+small change is 0.0001)
+However, you can manually compute the marginal effect given a change of variable is one.
+
+\section{Inference about odds ratios }
+
+\begin{align*}
+\text{ Odds ratio } &= exp(coef)\\
+\text{ Standard Error of Odds ratio } &= \text{ Odds ratio }  \times \text{ SE of coef }\\
+\text{ t-ratio of Odds ratio } &= \text{ t-ratio of coef }\\
+\text{ p-value of Odds ratio } &= \text{ p-value of coef }\\
+\text{ Confidence interval (CI) of Odds ratio } &= exp(\text{ CI of coef })
+\end{align*}
+
+
+\section{Interaction effects}
+The partial effect of an interaction reported is useless.(Page 756 Green's book)
+Consider regression below
+\begin{equation*}
+Prob(DocVis_{it} > 0) = F(b_1 + b_2Age_{it} + b_3Edu_{it} + b_4Age_{it} \times Edu_{it}).
+\end{equation*}
+The partial effect of $ Age $ should be $ F'(\bm{x}'\bm{b})(b_2 + b_4Edu) $,
+where $ F() $ and $ F'() $ are cdf and pdf of a probability distribution.
+We need to manually compute the partial effect following the method mentioned above, 
+instead of using the one reported in common computer packages.
+
+
+
+
+\section{Pooled estimator in a panel data}
+
+The pooled MLE that ignores fixed effects will be inconsistent--possibly wildly so.
+(Note: Because the estimator is ML, not least squares, converting the data to deviations
+from group means is not a solution--converting the binary dependent variable to deviations
+will produce a new variable with unknown properties.)(page 781 in Green's book)
+
+
+
+
+
+
+
+\section{Multinomial choices}
+
+Conditional logit model (Multinomial logit model) is different from ordered logit model.
+
+\subsection{Conditional logit model}
+McFadden has shown that if (and only if) the $ J $ disturbances are independent and
+identically distributed with Gumbel distribution,
+\begin{equation*}
+F(\varepsilon_{ij}) = exp( - exp( - \varepsilon_{ij})),
+\end{equation*}
+then
+\begin{equation*}
+Prob(Y_{i} = j) = \frac{exp(\bm{z'}_{ij} \bm{\theta})}{\sum\limits_{j = 1} ^J	
+exp(\bm{z'}_{ij} \bm{\theta})},
+\end{equation*}
+which leads to what is called the conditional logit model. (It is often labeled the
+multinomial logit model, but this wording conflicts with the usual name for the model
+discussed in the next section.)
+
+{\textbf {The coefficients in this model are difficult to interpret.}}
+For any particular exogenous variable x, the partial effect need not have the same sign
+as the coef of it. SE can be estimated using the delta method.
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{my_bib}
+
+\end{document}
+
