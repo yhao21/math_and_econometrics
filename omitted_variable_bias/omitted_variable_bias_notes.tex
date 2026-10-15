@@ -1,0 +1,149 @@
+
+%\documentclass[./main.tex(path of main file)]{subfiles}
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newtheorem{thm}{Theorem}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{float}
+\usepackage[sort,comma]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{subfiles}
+\usepackage{blindtext}
+\usepackage{glossaries}
+\usepackage{pdflscape}
+\usepackage{adjustbox}
+\usepackage{rotating}
+\usepackage{eurosym,geometry,ulem,subcaption,caption,color,sectsty,comment,footmisc,pdflscape,array}
+
+% Format definition list
+\newenvironment{mylist}[1]%
+  {\begin{list}{}{\settowidth{\labelwidth}{\textbf{#1}}
+   \setlength{\leftmargin}{\labelwidth}
+   \addtolength{\leftmargin}{\labelsep}
+   \renewcommand{\makelabel}[1]{\textbf{\hfill##1}}}}%
+  {\end{list}}
+
+
+%%% Format the way to reference subplots
+% 1. Change the subfigure label to include parentheses: (a), (b), etc.
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+% 2. Fix the label under the image so it doesn't show double parentheses like ((a))
+\captionsetup[subfigure]{labelformat=simple}
+
+% 3. Add a space between the Figure number and the subfigure letter in references
+\makeatletter
+\renewcommand\p@subfigure{\thefigure~}
+\makeatother
+
+
+
+
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+
+
+
+\title{}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+Suppose the true model is
+\begin{equation}
+y = a + \beta x + \gamma z + \varepsilon,
+\end{equation}
+where $ x $ is the variable of interest, $ z $ is a control variable.
+
+The relationship between $ x $ and $ z $ is
+\begin{equation}
+z = \alpha + \pi x  + u
+\end{equation}
+
+If $ z $ is omitted in the regression, you are estimating
+\begin{align}
+		y &= a + \beta x + \gamma (\alpha + \pi x  + u)  + \varepsilon\\
+		&= (a + \gamma \alpha) + (\beta + \gamma \pi)x + (\varepsilon + \gamma u)\\
+		&=  \widehat{const}_{bias} +  \widehat{\beta}_{bias} x +  \widehat{\varepsilon}_{bias}. \label{eqn:bias_eq}
+\end{align}
+
+The biased estimate of $ \beta $ is 
+\begin{equation}
+ \widehat{\beta}_{bias} = \beta + \gamma \pi,
+\end{equation}
+where $ \beta $ indicates the true relationship between $ y $ and $ x $,
+$ \gamma $ is the true relationship between $ y $ and $ z $,
+$ \pi $ is the true relationship between $ x $ and $ z $.
+
+The Table \ref{table:bias_estimate} below reflects the change in the estimate of $ \beta $ if $ z $ is omitted from 
+regressions.
+
+
+
+\begin{table}[h!]
+\begin{center}
+\begin{threeparttable}
+\caption{}			
+\label{table:bias_estimate}
+
+\begin{tabular}{ccc}
+\hline\hline
+& $ \gamma > 0 $ & $ \gamma < 0 $\\
+ \hline \\[-1.8ex]
+
+ $ \pi > 0 $ & $ \widehat{\beta}_{bias} > \beta $  &$ \widehat{\beta}_{bias} < \beta $ \\
+$ \pi < 0 $ & $ \widehat{\beta}_{bias} < \beta $  &$ \widehat{\beta}_{bias} > \beta $ \\
+
+\hline\hline
+\end{tabular}
+
+
+\end{threeparttable}
+\end{center}
+\end{table}
+
+
+Influence on the estimate of $ \beta $ if $ z $ is ommited:
+\begin{itemize}
+		\item If $ z,y $ positive related ($ \gamma > 0 $) and $ x,z $ positive related $ \pi > 0 $,  overestimate of $ \beta $, i.e., $ \widehat{\beta}_{bias} > \beta $.
+		\item If $ z,y $ positive related ($ \gamma > 0 $) and $ x,z $ negative related $ \pi < 0 $,  underestimate of $ \beta $, i.e., $ \widehat{\beta}_{bias} < \beta $.
+
+		\item If $ z,y $ negative related ($ \gamma < 0 $) and $ x,z $ positive related $ \pi > 0 $,  understimate of $ \beta $, i.e., $ \widehat{\beta}_{bias} < \beta $.
+		\item If $ z,y $ negative related ($ \gamma < 0 $) and $ x,z $ negative related $ \pi < 0 $,  overestimate of $ \beta $, i.e., $ \widehat{\beta}_{bias} > \beta $.
+\end{itemize}
+
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{my_bib}
+
+\end{document}
+
