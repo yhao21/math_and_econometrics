@@ -226,7 +226,37 @@ Clustering& Time-Cohort& Cohort& Time\\
 
 
 
+{\textbf {Clustering at time and cohort vs. at time and age}}
+The two different clustering methods allows for a fundamentally different correlation structure across time.
 
+\begin{align*}
+ \widehat{Var}_{time,cohort} &=  \widehat{Var}_{time} +  \widehat{Var}_{cohort} -  \widehat{Var}_{time  \times cohort}\\
+ \widehat{Var}_{time,age} &=  \widehat{Var}_{time} +  \widehat{Var}_{age} -  \widehat{Var}_{time  \times age}
+\end{align*}
+
+\begin{itemize}
+\item 
+		$ \widehat{Var}_{time  \times cohort} = \widehat{Var}_{time  \times age} $ because age is determined given time and cohort.
+\item 
+		The difference is $ \widehat{Var}_{cohort} \ne \widehat{Var}_{age} $.
+\item 
+		Clustering by age
+		\begin{itemize}
+		\item 
+				Groups different generations across time that happen to be at the same life-cycle stage.
+		\item 
+				Example: It allows the errors of 30-year-olds in 2010 (born in 1980) to be correlated with 30-year-olds in 2020 (born in 1990).
+		\item 
+				Economic logic: Captures life-cycle stage-specific shocks (e.g., life milestones, early-career transitions, having young children).
+		\end{itemize}
+\item 
+		Which one is preferred?
+		\begin{itemize}
+		\item Time + Cohort clustering is strongly preferred.
+		\item The leading theoretical concern in expectations data is that individuals carry unobserved, persistent biases formed by their lifetime historical experiences. Because those experiences stick with a birth cohort over time, error persistence follows the birth cohort, not age brackets.
+		\item Age-specific patterns (life-cycle consumption) are typically controlled for in the regression index via age fixed effects or polynomials, leaving the unobserved persistence in the cohort dimension.
+		\end{itemize}
+\end{itemize}
 
 
 
