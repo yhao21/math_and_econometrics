@@ -1,0 +1,243 @@
+
+%\documentclass[./main.tex(path of main file)]{subfiles}
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newtheorem{thm}{Theorem}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{float}
+\usepackage[sort,comma]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{subfiles}
+\usepackage{blindtext}
+\usepackage{glossaries}
+\usepackage{pdflscape}
+\usepackage{adjustbox}
+\usepackage{rotating}
+\usepackage{eurosym,geometry,ulem,subcaption,caption,color,sectsty,comment,footmisc,pdflscape,array}
+
+% Format definition list
+\newenvironment{mylist}[1]%
+  {\begin{list}{}{\settowidth{\labelwidth}{\textbf{#1}}
+   \setlength{\leftmargin}{\labelwidth}
+   \addtolength{\leftmargin}{\labelsep}
+   \renewcommand{\makelabel}[1]{\textbf{\hfill##1}}}}%
+  {\end{list}}
+
+
+%%% Format the way to reference subplots
+% 1. Change the subfigure label to include parentheses: (a), (b), etc.
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+% 2. Fix the label under the image so it doesn't show double parentheses like ((a))
+\captionsetup[subfigure]{labelformat=simple}
+
+% 3. Add a space between the Figure number and the subfigure letter in references
+\makeatletter
+\renewcommand\p@subfigure{\thefigure~}
+\makeatother
+
+
+
+
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+
+
+
+\title{}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+
+
+\section{Two-way clustering}
+
+Cluster the standard error at time level vs. two-way clustering at time and cohort level.
+
+Cohort is defined by individuals birth year, i.e., all individuals who are born in the same year
+belongs to the same cohort.
+
+
+{\textbf {Cluster at time level}}:
+\begin{itemize}
+\item Allow for correlation of unkown form in residusals across time periods.
+\end{itemize}
+
+
+{\textbf {Cluster at time and cohort level (two-way clustering)}}:
+\begin{itemize}
+\item Allow for correlation of unkown form in residusals within the same cohort across time periods
+		(the 1980 cohort in 2015 and 2020) and for correlation across cohorts within the same time 
+		period (everyone in 2020).
+\item It also allows correlation of residuals within the exact same time-cohort cell (the 1980 cohort in 2020)
+\end{itemize}
+
+{\textbf {Cluster at time-cohort level}}:
+\begin{itemize}
+\item It ONLY allows correlation of residuals within the exact same time-cohort cell (the 1980 cohort in 2020)
+\item It assumes the correlation across cohorts within the same time period to be ZERO (cohort 1980 and cohort
+		1990 in 2020 share no common shocks. This is very restrictive!)
+\item It assumes the correlation within the same cohort across time periods to be ZERO (cohort 1980 in 2020 is
+		completely independent of the 1980 cohort in 2021. This is very restrictive!)
+\item 
+		{\textbf {In short: Two-way clustering is much more general and conservative, whereas clustering at the time-cohort cell level is much more restrictive.}}
+\end{itemize}
+
+
+
+{\textbf {Number of Clusters}}:
+\begin{itemize}
+\item If you have 60 time periods and 50 cohorts,
+		\begin{itemize}
+		\item Two-way clustering relies on $ G_{time} = 60 $ and $ G_{cohort} = 50 $
+		\item Time-cohort clustering creates $ 60  \times 50 = 3000 $ clusters.
+		\end{itemize}
+\end{itemize}
+
+
+{\textbf {Magnitudes of SE}}:
+\begin{itemize}
+\item 
+Clustering at the time-cohort cell level will almost always yield much smaller standard errors than two-way clustering. This is because the time-cohort level creates thousands of tiny clusters and falsely assumes that errors across different years or across different cohorts are completely independent.
+\end{itemize}
+
+
+{\textbf {Interpretation of SE under alternative clutering methods}}:
+
+Two-way clustering computes the variance-covariance matrix as:
+\begin{equation*}
+ \widehat{Var}_{two-way} =  \widehat{Var}_{time} +  \widehat{Var}_{cohort} -  \widehat{Var}_{time \times cohort}.
+ \label{eqn:two_way_clustering_math}
+\end{equation*}
+
+
+Consider results in Table \ref{table:alternative_clustering}, The SE is 0.0054 when it is clustered at time level.
+It is 50\% larger than the SE clustered at the cohort level (0.0036). The two-way clustered SE is 0.006.
+It suggests that
+\begin{itemize}
+\item 
+		Time-series shocks are the dominant source of error dependence
+		\begin{itemize}
+    \item 
+				The primary unobserved correlation in your data comes from aggregate macroeconomic shocks at time level
+				(e.g., business cycles, sudden CPI releases, monetary policy announcements) that hit all households at the same time,
+				regardless of their age.
+    \item 
+				Clustering only at the cohort level would severely understate your standard errors, leading to inflated t-statistics and
+    		false positives.
+		\end{itemize}
+
+\item 
+		Cohort persistence provides an incremental, non-trivial variance contribution
+		\begin{itemize}
+				\item 
+						Moving from $ SE_{time} = 0.0054 $ to $ SE_{two-way} = 0.006 $ increases the SE by roughly 11\% (and the variance 
+						by about 23\%).
+				\item 
+						Economic interpretation: While aggregate time shocks dominate, individuals born in the same year still share 
+						persistent unobserved characteristics (e.g., formative lifetime economic experiences, life-cycle stage). 
+						Two-way clustering successfully absorbs this extra layer of dependence.
+		\end{itemize}	
+\end{itemize}
+
+{\textbf {Variance Decomposition}}
+In Eq. \eqref{eqn:two_way_clustering_math},
+\begin{align*}
+\widehat{Var}_{time}    &= 0.0054^{2} = 0.00002916\\
+\widehat{Var}_{cohort}  &= 0.0036^{2} = 0.00001296\\
+\widehat{Var}_{two-way} &= 0.0060^{2} = 0.00003600
+\end{align*}
+Hence, 
+\begin{equation*}
+\widehat{Var}_{time  \times cohort} =  \widehat{Var}_{time} +  \widehat{Var}_{cohort} -  \widehat{Var}_{two-way} = 0.00000612
+\end{equation*}
+
+\begin{equation*}
+SE_{time  \times cohort} = \sqrt { \widehat{Var}_{time  \times cohort}} \approx 0.00247
+\end{equation*}
+This reveals the hierachy of SEs:
+\begin{equation*}
+SE_{time  \times cohort} < SE_{cohort} < SE_{time} < SE_{two-way}
+\end{equation*}
+This hierarchy confirms that your error structure is well-behaved: standard errors grow as you allow for broader and more general structures of cross-sectional and temporal correlation.
+
+
+\begin{table}[h!]
+\begin{center}
+\begin{threeparttable}
+\caption{Alternative Clustering}
+\label{table:alternative_clustering}
+
+\begin{tabular}{lccc}
+\hline\hline
+ & (1)& (2)& (3)\\
+ \hline \\[-1.8ex]
+
+
+    $ \tau^{1yr} $&  0.0468***& 0.0468***& 0.0468***\\
+                  &    (0.006)&  (0.0036)&  (0.0054)\\
+                  &           &          &          \\
+       No. of Obs.&    188,073&   188,073&   188,073\\
+  Pseudo-R-squared&     0.2057&    0.2057&    0.2057\\
+
+
+
+\multicolumn{4}{c}{}\\
+
+Clustering& Time-Cohort& Cohort& Time\\
+
+
+\hline\hline
+\end{tabular}
+
+\end{threeparttable}
+\end{center}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{my_bib}
+
+\end{document}
+
